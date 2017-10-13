@@ -1,0 +1,19 @@
+package shader;
+
+public class StaticShader extends Shader {
+
+	private static final String VERTEX_FILE = "src/shader/vertexShader.txt";
+	private static final String FRAGMENT_FILE = "src/shader/fragmentShader.txt";
+	
+	public StaticShader(String vertexFile, String fragmentFile) {
+		super(vertexFile, fragmentFile);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	protected void bindAttribs() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

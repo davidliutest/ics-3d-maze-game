@@ -1,0 +1,21 @@
+package mainTester;
+
+import org.lwjgl.opengl.Display;
+
+import renderEngine.DisplayManager;
+import renderEngine.Loader;
+import renderEngine.Renderer;
+
+public class Application {
+
+	public static void main(String[] args) {
+		DisplayManager.create();
+		Loader loader = new Loader();
+		Render renderer = new Renderer();
+		while(!Display.isCloseRequested()) {
+			DisplayManager.update();
+		}
+		DisplayManager.close();
+	}
+
+}

@@ -1,0 +1,17 @@
+package renderEngine;
+
+public class LoadModel {
+	
+	public RawModel loadToVAO(float[] pos) {
+		
+	}
+	
+	public int create VAO() {
+		
+	}
+	
+	public void storeData(int attribNum, float[] data) {
+		
+	}
+
+}

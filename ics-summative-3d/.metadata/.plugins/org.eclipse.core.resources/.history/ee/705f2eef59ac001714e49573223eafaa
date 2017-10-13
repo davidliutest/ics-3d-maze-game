@@ -1,0 +1,25 @@
+package renderEngine;
+
+import org.lwjgl.LWJGLException;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
+
+public class DisplayManager {
+	
+	public static final int WIDTH = 1000;
+	private static final int HEIGHT = 600;
+	
+	public static void create() {
+		try {
+			Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
+		} catch (LWJGLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void update() {}
+	
+	public static void close() {}
+
+}

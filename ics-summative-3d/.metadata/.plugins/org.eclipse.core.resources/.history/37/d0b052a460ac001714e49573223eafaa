@@ -1,0 +1,17 @@
+package mainTester;
+
+import org.lwjgl.opengl.Display;
+
+import renderEngine.DisplayManager;
+
+public class Application {
+
+	public static void main(String[] args) {
+		DisplayManager.create();
+		while(!Display.isCloseRequested()) {
+			DisplayManager.update();
+		}
+		DisplayManager.close();
+	}
+
+}

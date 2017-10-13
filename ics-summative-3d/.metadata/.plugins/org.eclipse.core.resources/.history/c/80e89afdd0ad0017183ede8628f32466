@@ -1,0 +1,13 @@
+package models;
+
+import textures.Texture;
+
+public class TextureModel extends Model {
+	
+	public Texture texture;
+	
+	public TextureModel(Texture texture) {
+		this.texture = texture;
+	}
+	
+}

@@ -1,0 +1,16 @@
+package renderEngine;
+
+public class DisplayManager {
+	
+	public static final int WIDTH = 1100;
+	private static final HEIGHT = 600;
+	
+	public static void create() {
+		
+	}
+	
+	public static void update() {}
+	
+	public static void close() {}
+
+}

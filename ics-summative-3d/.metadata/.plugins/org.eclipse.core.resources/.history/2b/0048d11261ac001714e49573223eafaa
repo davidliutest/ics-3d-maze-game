@@ -1,0 +1,39 @@
+package mainTester;
+
+import org.lwjgl.opengl.Display;
+
+import renderEngine.DisplayManager;
+import renderEngine.Loader;
+import renderEngine.RawModel;
+import renderEngine.Renderer;
+
+public class Application {
+
+	public static void main(String[] args) {
+		DisplayManager.create();
+		
+		Loader loader = new Loader();
+		Renderer renderer = new Renderer();
+		
+		float[] vertices = {
+				    -0.5f, 0.5f, 0f,
+				    -0.5f, -0.5f, 0f,
+				    0.5f, -0.5f, 0f,
+				    0.5f, -0.5f, 0f,
+				    0.5f, 0.5f, 0f,
+				    -0.5f, 0.5f, 0f
+				  };
+		RawModel model = loader.loadToVAO(vertices);
+		
+		while(!Display.isCloseRequested()) {
+			renderer.prepare();
+			// logic
+			// render
+			renderer.render(model);
+			DisplayManager.update();
+		}
+		loader.close();
+		DisplayManager.close();
+	}
+
+}

@@ -1,0 +1,12 @@
+1507490798661	Rename type 'LoadModel'
+1507490928612	Rename type 'ModelManager'
+1507494968136	Rename package 'mainTester'
+1507494973253	Rename package 'renderEngine'
+1507497701993	Rename type 'DisplayManager'
+1507497709174	Rename type 'RawModel'
+1507497770418	Rename method 'bindAttributes'
+1507497775736	Rename method 'bindAttribute'
+1507497985857	Rename method 'prepare'
+1507648864323	Rename local variable 'tex'
+1507648868689	Rename local variable 'textures'
+1507649107869	Move compilation unit

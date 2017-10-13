@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.lwjgl.opengl.DisplayMode"/>
+<fullyQualifiedTypeName name="org.lwjgl.opengles.ContextAttribs"/>
+<fullyQualifiedTypeName name="org.lwjgl.opengl.ContextAttribs"/>
+<fullyQualifiedTypeName name="renderEngine.DisplayManager"/>
+<fullyQualifiedTypeName name="org.lwjgl.opengl.Display"/>
+<fullyQualifiedTypeName name="org.lwjgl.BufferUtils"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="org.lwjgl.opengl.GL30"/>
+<fullyQualifiedTypeName name="renderEngine.Renderer"/>
+<fullyQualifiedTypeName name="java.nio.IntBuffer"/>
+<fullyQualifiedTypeName name="org.lwjgl.opengl.GL15"/>
+<fullyQualifiedTypeName name="org.lwjgl.opengl.GL20"/>
+<fullyQualifiedTypeName name="org.lwjgl.opengl.GL11"/>
+<fullyQualifiedTypeName name="org.newdawn.slick.opengl.TextureLoader"/>
+<fullyQualifiedTypeName name="textures.Texture"/>
+</qualifiedTypeNameHistroy>
