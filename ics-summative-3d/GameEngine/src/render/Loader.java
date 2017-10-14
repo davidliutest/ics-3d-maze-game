@@ -1,13 +1,6 @@
 package render;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
-import java.util.ArrayList;
-import java.util.List;
-
+import models.Model;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
@@ -16,7 +9,12 @@ import org.lwjgl.opengl.GL30;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 
-import models.Model;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Loader {
 	
@@ -24,10 +22,11 @@ public class Loader {
 	private List<Integer> vbos = new ArrayList<Integer>();
 	private List<Integer> textures = new ArrayList<Integer>();
 	
-	public Model loadToVAO(float[] pos, int[] indices) {
+	public Model loadToVAO(float[] pos, float[] texCoords, int[] indices) {
 		int vaoID = createVAO();
 		bindIndicesBuffer(indices);
-		storeDataInAttribList(0, pos);
+		storeDataInAttribList(0, 3, pos);
+		storeDataInAttribList(1, 2, texCoords);
 		unbindVAO();
 		return new Model(vaoID, indices.length);
 	}
@@ -35,7 +34,7 @@ public class Loader {
 	public int loadTexture(String file) {
 		Texture texture = null;
 		try {
-			texture = TextureLoader.getTexture("PNG", new FileInputStream("res/" + file + ".png"));
+			texture = TextureLoader.getTexture("PNG", Loader.class.getResourceAsStream("/textures/texture.png"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -62,13 +61,13 @@ public class Loader {
 		return vaoID;
 	}
 	
-	public void storeDataInAttribList(int attribNum, float[] data) {
+	public void storeDataInAttribList(int attribNum, int coordSize, float[] data) {
 		int vboID = GL15.glGenBuffers();
 		vbos.add(vboID);
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER,  vboID);
 		FloatBuffer buffer = storeDataInFloatBuffer(data);
 		GL15.glBufferData(GL15.GL_ARRAY_BUFFER, buffer, GL15.GL_STATIC_DRAW);
-		GL20.glVertexAttribPointer(attribNum, 3, GL11.GL_FLOAT, false, 0, 0);
+		GL20.glVertexAttribPointer(attribNum, coordSize, GL11.GL_FLOAT, false, 0, 0);
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
 	}
 	

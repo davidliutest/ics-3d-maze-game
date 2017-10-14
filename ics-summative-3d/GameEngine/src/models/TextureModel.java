@@ -2,15 +2,18 @@ package models;
 
 import textures.Texture;
 
-public class TextureModel extends Model {
-	
+public class TextureModel {
+
+	public Model model;
 	public Texture texture;
 	
-	public TextureModel(int vaoID, int vertexCount, Texture texture) {
-		super(vaoID, vertexCount);
+	public TextureModel(Model model, Texture texture) {
+		this.model = model;
 		this.texture = texture;
 	}
-	
+
+	public Model getModel() { return model; }
+
 	public Texture getTexture() {
 		return texture;
 	}
