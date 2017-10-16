@@ -12,6 +12,9 @@ import textures.Texture;
 public class Application {
 
 	public static void main(String[] args) {
+
+		//this is a test
+
 		Displayer.create();
 		
 		Loader loader = new Loader();
