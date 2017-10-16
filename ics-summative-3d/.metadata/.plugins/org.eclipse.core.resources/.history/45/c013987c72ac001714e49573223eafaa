@@ -1,9 +1,0 @@
-#version 150
-
-in vec3 colour;
-
-out vec4 color_out;
-
-void main(void){
-	color_out = vec4(colour,1.0);
-}
