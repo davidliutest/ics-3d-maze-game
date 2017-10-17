@@ -1,8 +1,10 @@
 package tester;
 
+import entities.Entity;
 import models.Model;
 import models.TextureModel;
 import org.lwjgl.opengl.Display;
+import org.lwjgl.util.vector.Vector3f;
 import render.Displayer;
 import render.Loader;
 import render.Renderer;
@@ -38,14 +40,18 @@ public class Application {
 				1,1, // v3
 				1,0 // v4
 		};
-		Model model = loader.loadToVAO(vertices, texCoords, indices);
+		Model staticModel = loader.loadToVAO(vertices, texCoords, indices);
 		Texture texture = new Texture(loader.loadTexture("texture"));
-		TextureModel textureModel = new TextureModel(model, texture);
+		TextureModel textureModel = new TextureModel(staticModel, texture);
+
+		Entity entity = new Entity(textureModel, new Vector3f(-1,0,0),0,0,0,1);
+
 		while(!Display.isCloseRequested()) {
+			entity.increasePosition(0.002f, 0, 0);
+			entity.increaseRotation(0, 1, 0);
 			renderer.start();
 			shader.start();
-
-			renderer.render(textureModel);
+			renderer.render(entity, shader);
 			shader.stop();
 			Displayer.update();
 		}
