@@ -5,10 +5,12 @@ import org.lwjgl.util.vector.Vector3f;
 
 public class Entity {
 
-    private TextureModel model;
-    private Vector3f position;
-    private float rotX,rotY,rotZ;
-    private float scale;
+    protected TextureModel model;
+    protected Vector3f position;
+    protected float rotX,rotY,rotZ;
+    protected float scale;
+
+    protected boolean destroy;
 
     public Entity(TextureModel model, Vector3f position, float rotX, float rotY, float rotZ, float scale) {
         this.model = model;
@@ -31,17 +33,23 @@ public class Entity {
         this.rotZ += dz;
     }
 
+    public void destroy() {
+        this.destroy = true;
+    }
+
+    public boolean remove() {
+        return this.destroy;
+    }
+
     public TextureModel getModel() {
         return model;
     }
-
     public void setModel(TextureModel model) {
         this.model = model;
     }
     public Vector3f getPosition() {
         return position;
     }
-
     public void setPosition(Vector3f position) {
         this.position = position;
     }
