@@ -7,6 +7,7 @@ import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.FloatBuffer;
@@ -29,6 +30,7 @@ public abstract class Shader {
 		bindAttribs();
 		GL20.glLinkProgram(programID);
 		GL20.glValidateProgram(programID);
+		getAllUniformLocations();
 	}
 
 	protected abstract void getAllUniformLocations();
@@ -87,7 +89,7 @@ public abstract class Shader {
 			BufferedReader br = new BufferedReader(new InputStreamReader(Shader.class.getResourceAsStream(file)));
 			String ln;
 			while((ln = br.readLine()) != null) {
-				shaderSrc.append(ln + "//\n");
+				shaderSrc.append(ln).append("//\n");
 			}
 			br.close();
 		} catch(IOException e) {

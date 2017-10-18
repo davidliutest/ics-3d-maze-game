@@ -40,9 +40,10 @@ public class Loader {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		int textureID = texture.getTextureID();
-		textures.add(textureID);
-		return textureID;
+		//int textureID = texture.getTextureID();
+		//textures.add(textureID);
+		textures.add(texture.getTextureID());
+		return texture.getTextureID(); //textureID;
 	}
 
 	public void close() {
