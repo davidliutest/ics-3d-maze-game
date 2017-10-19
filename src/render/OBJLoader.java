@@ -83,7 +83,7 @@ public class OBJLoader {
         for(int i=0; i<indicies.size(); i++){
             indiciesArray[i] = indicies.get(i);
         }
-        return loader.loadToVAO(verticiesArray, texturesArray, indiciesArray);
+        return loader.loadToVAO(verticiesArray, texturesArray, normalsArray, indiciesArray);
     }
     private static void processVertex(String[] vertexData, List<Integer> indicies, List<Vector2f> textures, List<Vector3f> normals, float[] textureArray, float[] normalsArray){
         int currentVertexPointer = Integer.parseInt(vertexData[0]) -1;

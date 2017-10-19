@@ -9,6 +9,7 @@ import org.lwjgl.opengl.GL30;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.FloatBuffer;
@@ -22,11 +23,12 @@ public class Loader {
 	private List<Integer> vbos = new ArrayList<Integer>();
 	private List<Integer> textures = new ArrayList<Integer>();
 	
-	public Model loadToVAO(float[] pos, float[] texCoords, int[] indices) {
+	public Model loadToVAO(float[] pos, float[] texCoords,float[] normals, int[] indices) {
 		int vaoID = createVAO();
 		bindIndicesBuffer(indices);
 		storeDataInAttribList(0, 3, pos);
 		storeDataInAttribList(1, 2, texCoords);
+		storeDataInAttribList(2, 2, normals);
 		unbindVAO();
 		return new Model(vaoID, indices.length);
 	}
@@ -34,7 +36,8 @@ public class Loader {
 	public int loadTexture(String file) {
 		Texture texture = null;
 		try {
-			texture = TextureLoader.getTexture("",Loader.class.getResourceAsStream("/textures/"+file+".png"));
+			//texture = TextureLoader.getTexture("",Loader.class.getResourceAsStream("/textures/"+file+".png"));
+			texture = TextureLoader.getTexture("", new FileInputStream("res/textures/" + file + ".png"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -42,6 +45,10 @@ public class Loader {
 		}
 		//int textureID = texture.getTextureID();
 		//textures.add(textureID);
+		GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR);
+		GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_LINEAR);
+		GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, GL11.GL_REPEAT);
+		GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, GL11.GL_REPEAT);
 		textures.add(texture.getTextureID());
 		return texture.getTextureID(); //textureID;
 	}

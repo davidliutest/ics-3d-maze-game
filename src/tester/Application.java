@@ -2,6 +2,7 @@ package tester;
 
 import entities.Camera;
 import entities.Entity;
+import entities.Light;
 import entities.Mob;
 import models.Model;
 import models.TextureModel;
@@ -35,7 +36,7 @@ public class Application {
 		TextureModel textureModel = new TextureModel(staticModel, texture);
 
 		Entity entity = new Entity(textureModel, new Vector3f(5,-5,-25),0,0,0,1);
-
+		Light light = new Light(new Vector3f(0,0,-20),new Vector3f(1,1,1));
 
 		Model mob1 = OBJLoader.loadObjectModel("dragon", loader);
 		Texture mobTexture = new Texture(loader1.loadTexture("white"));
@@ -51,6 +52,7 @@ public class Application {
 			camera.move();
 			renderer.start();
 			shader.start();
+			shader.loadLight(light);
 			shader.loadViewMatrix(camera);
 			renderer.render(entity, shader);
 			renderer.render(dragon, shader);
