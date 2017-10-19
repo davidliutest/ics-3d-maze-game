@@ -38,10 +38,10 @@ public class Application {
 
 
 		Model mob1 = OBJLoader.loadObjectModel("dragon", loader);
-		Texture mobTexture = new Texture(loader1.loadTexture("white"));
+		Texture mobTexture = new Texture(loader1.loadTexture("fire"));
 		TextureModel mobTexModel = new TextureModel (mob1, mobTexture);
 
-		Mob dragon = new Mob (mobTexModel, new Vector3f(-5,-5,-25),0,0,0,1,100,100);
+		Mob dragon = new Mob (mobTexModel, new Vector3f(-9,-5,-25),0,0,0,1,100,100);
 
 
 		Camera camera = new Camera();
