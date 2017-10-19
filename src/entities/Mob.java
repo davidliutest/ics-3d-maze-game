@@ -3,7 +3,7 @@ package entities;
 import models.TextureModel;
 import org.lwjgl.util.vector.Vector3f;
 
-public abstract class Mob extends Entity {
+public class Mob extends Entity {
 
     protected int health;
     protected int damage;
