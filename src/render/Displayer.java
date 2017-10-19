@@ -7,7 +7,7 @@ public class Displayer {
 	
 	private static final int WIDTH = 1000;
 	private static final int HEIGHT = 600;
-	private static final int FPS_CAP = 120;
+	private static final int FPS_CAP = 60;
 	
 	public static void create() {
 		ContextAttribs attribs = new ContextAttribs(3, 2)
