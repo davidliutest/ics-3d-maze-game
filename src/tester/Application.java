@@ -41,8 +41,7 @@ public class Application {
 		Texture mobTexture = new Texture(loader1.loadTexture("white"));
 		TextureModel mobTexModel = new TextureModel (mob1, mobTexture);
 
-		Mob dragon = new Mob (mobTexModel, new Vector3f(-5,-5,-25),0,0,0,1,100,100);
-
+		Mob dragon = new Mob (mobTexModel, new Vector3f(-8,-5,-25),0,0,0,1,100,100);
 
 		Camera camera = new Camera();
 
@@ -60,6 +59,7 @@ public class Application {
 		}
 		shader.close();
 		loader.close();
+		loader1.close();
 		Displayer.close();
 	}
 
