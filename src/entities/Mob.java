@@ -3,6 +3,7 @@ package entities;
 import models.TextureModel;
 import org.lwjgl.util.vector.Vector3f;
 
+// Mob class extends entities and contains additional attributes for an entities that are "Mobs"
 public class Mob extends Entity {
 
     protected int health;
@@ -14,14 +15,13 @@ public class Mob extends Entity {
         this.damage = damage;
     }
 
+    // Getters and setters
     public void heal(int hp) {
         this.health += hp;
     }
-
     public int getHealth() {
         return this.health;
     }
-
     public void setHealth(int health) {
         this.health = health;
     }

@@ -11,14 +11,20 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.FloatBuffer;
 
+// Class that applies shading to the rendering of the models
+// Uses both the vertex shader and the fragment shader to achieve shading
+// The vertex shader calculates colour of model from vertices
+// The fragment shader calculates colour of all other points on model
+// Uses LWJGL methods to do so
+// Class is a template for different type of shaders
 public abstract class Shader {
 	
 	private int programID;
 	private int vertexShaderID;
 	private int fragmentShaderID;
 
+	// Matrix that is used to calculate shading
 	private static FloatBuffer matrixBuffer = BufferUtils.createFloatBuffer(16);
-
 
 	public Shader(String vertexFile, String fragmentFile) {
 		vertexShaderID = loadShader(vertexFile, GL20.GL_VERTEX_SHADER);
@@ -45,7 +51,8 @@ public abstract class Shader {
 	public void stop() {
 		GL20.glUseProgram(0);
 	}
-	
+
+	// Cleans ups the program on exit and prevents memory leak
 	public void close() {
 		stop();
 		GL20.glDetachShader(programID, vertexShaderID);
@@ -54,9 +61,12 @@ public abstract class Shader {
 		GL20.glDeleteShader(fragmentShaderID);
 		GL20.glDeleteProgram(programID);
 	}
-	
+
+	// Binds attributes to VAOs in OpenGL
 	protected abstract void bindAttribs();
-	
+
+	// Loads various attributes to the GPU using LWJGL methods
+
 	protected void bindAttrib(int attrib, String varName) {
 		GL20.glBindAttribLocation(programID, attrib, varName);
 	}

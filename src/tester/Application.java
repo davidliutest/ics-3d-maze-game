@@ -17,12 +17,11 @@ import textures.Texture;
 
 import java.io.FileNotFoundException;
 
+// Class that tests the code
 public class Application {
 
 	public static void main(String[] args) throws FileNotFoundException {
-
-		//this is a test
-
+		// Initialize all objects for rendering
 		Displayer.create();
 		
 		Loader loader = new Loader();
@@ -30,6 +29,7 @@ public class Application {
 		StaticShader shader = new StaticShader();
 		Renderer renderer = new Renderer(shader);
 
+		// Actual model
 		Model staticModel = OBJLoader.loadObjectModel("stall", loader);
 		Texture texture = new Texture(loader.loadTexture("stallTexture"));
 
@@ -42,10 +42,13 @@ public class Application {
 		Texture mobTexture = new Texture(loader1.loadTexture("white"));
 		TextureModel mobTexModel = new TextureModel (mob1, mobTexture);
 
+		// Creates a temp mob
 		Mob dragon = new Mob (mobTexModel, new Vector3f(-8,-5,-25),0,0,0,1,100,100);
 
+		// Creates the camera
 		Camera camera = new Camera();
 
+		// Main game loop
 		while(!Display.isCloseRequested()) {
 			entity.increaseRotation(0,1,0);
 			dragon.increaseRotation(0,1,0);
@@ -59,6 +62,7 @@ public class Application {
 			shader.stop();
 			Displayer.update();
 		}
+		// Cleans up program on exit
 		shader.close();
 		loader.close();
 		loader1.close();
