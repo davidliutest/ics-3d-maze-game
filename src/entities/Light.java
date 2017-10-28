@@ -2,6 +2,7 @@ package entities;
 
 import org.lwjgl.util.vector.Vector3f;
 
+// Light class contains information to store lighting information
 public class Light {
 
     private Vector3f position;
@@ -12,18 +13,16 @@ public class Light {
         this.colour = colour;
     }
 
+    // Getters and setters
     public Vector3f getPosition() {
         return position;
     }
-
     public Vector3f getColour() {
         return colour;
     }
-
     public void setPosition(Vector3f position) {
         this.position = position;
     }
-
     public void setColour(Vector3f colour) {
         this.colour = colour;
     }

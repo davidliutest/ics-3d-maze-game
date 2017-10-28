@@ -8,6 +8,8 @@ import org.lwjgl.util.vector.Matrix4f;
 import shader.StaticShader;
 import toolbox.Maths;
 
+// Class that renders models through a projection matrix
+// Uses LWJGL methods to do so
 public class Renderer {
 
 	private static final float FOV = 70;

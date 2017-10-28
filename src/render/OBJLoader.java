@@ -10,6 +10,8 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.util.*;
 
+// Class that loads .obj file into a model
+// Reads all attributes (vertices, normals, etc) of a .obj file
 public class OBJLoader {
 
     public static Model loadObjectModel(String fileName, Loader loader) throws FileNotFoundException {
@@ -30,7 +32,6 @@ public class OBJLoader {
         float []texturesArray = null;
         int [] indiciesArray = null;
         try{
-
             while(true) {
                 line = br.readLine();
                 String[] currentLine = line.split(" ");

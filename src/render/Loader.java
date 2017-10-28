@@ -17,6 +17,7 @@ import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
+// Class that puts VBOs in VAOs and sends them in the GPU memory
 public class Loader {
 	
 	private List<Integer> vaos = new ArrayList<Integer>();
@@ -53,6 +54,7 @@ public class Loader {
 		return texture.getTextureID(); //textureID;
 	}
 
+	// Deletes all vaos, vbos, and textures and prevents memory leak
 	public void close() {
 		for(int vao: vaos)
 			GL30.glDeleteVertexArrays(vao);
@@ -78,7 +80,9 @@ public class Loader {
 		GL20.glVertexAttribPointer(attribNum, coordSize, GL11.GL_FLOAT, false, 0, 0);
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
 	}
-	
+
+	// Initializes buffers to be sent to the GPU
+
 	private void bindIndicesBuffer(int[] indices) {
 		int vboID = GL15.glGenBuffers();
 		vbos.add(vboID);

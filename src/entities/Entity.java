@@ -3,6 +3,8 @@ package entities;
 import models.TextureModel;
 import org.lwjgl.util.vector.Vector3f;
 
+// Base class for all entities of the game
+// Contains and changes the position of the entity
 public class Entity {
 
     protected TextureModel model;
@@ -41,6 +43,7 @@ public class Entity {
         return this.destroy;
     }
 
+    // Getters and setters
     public TextureModel getModel() {
         return model;
     }

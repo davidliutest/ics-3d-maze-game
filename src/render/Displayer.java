@@ -3,6 +3,8 @@ package render;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.*;
 
+// Class that uses LWJGL library to display a screen
+// Also sets the frames per second
 public class Displayer {
 	
 	private static final int WIDTH = 1000;

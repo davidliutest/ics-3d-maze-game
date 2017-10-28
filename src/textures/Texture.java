@@ -1,5 +1,6 @@
 package textures;
 
+// Class that stores the ID of a texture for openGL to process
 public class Texture {
 	
 	private int textureID;
