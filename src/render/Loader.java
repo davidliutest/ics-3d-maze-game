@@ -28,7 +28,7 @@ public class Loader {
 		bindIndicesBuffer(indices);
 		storeDataInAttribList(0, 3, pos);
 		storeDataInAttribList(1, 2, texCoords);
-		storeDataInAttribList(2, 2, normals);
+		storeDataInAttribList(2, 3, normals);
 		unbindVAO();
 		return new Model(vaoID, indices.length);
 	}
