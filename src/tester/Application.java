@@ -20,7 +20,7 @@ import java.io.FileNotFoundException;
 // Class that tests the code
 public class Application {
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public void gameStart()throws FileNotFoundException {
 		// Initialize all objects for rendering
 		Displayer.create();
 		
