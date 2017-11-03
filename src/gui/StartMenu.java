@@ -1,10 +1,13 @@
 package gui;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import tester.Application;
 public class StartMenu {
@@ -39,7 +42,7 @@ public class StartMenu {
         instructions.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
+                instruction();
             }
         });
         JButton exitGame = new JButton("EXIT");
@@ -49,7 +52,7 @@ public class StartMenu {
                 System.exit(0);
             }
         });
-        ImageIcon image = new ImageIcon("minesweeper.jpg");
+        ImageIcon image = new ImageIcon("res/image/maze.jpg");
         JLabel label = new JLabel(image);
         con.gridx = 0;
         con.gridy = 0;
@@ -64,5 +67,17 @@ public class StartMenu {
         p.add(p1,con);
         f.add(p);
         f.setVisible(true);
+    }
+    public static void instruction(){
+        JFrame instruction = new JFrame();
+        JPanel instructionpic = new JPanel();
+        ImageIcon inimage = new ImageIcon("res/image/instruction.JPG");
+        JLabel inlabel = new JLabel(inimage);
+        instructionpic.add(inlabel);
+        instruction.setLayout(new BorderLayout());
+        instruction.add(instructionpic, BorderLayout.CENTER);
+        instruction.pack();
+        instruction.setTitle("INSTRUCTIONS");
+        instruction.setVisible(true);
     }
 }
