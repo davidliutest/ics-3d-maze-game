@@ -1,16 +1,7 @@
 package gui;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
-import tester.Application;
 public class StartMenu {
+    /*
     static{
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -80,4 +71,5 @@ public class StartMenu {
         instruction.setTitle("INSTRUCTIONS");
         instruction.setVisible(true);
     }
+    */
 }

@@ -6,9 +6,9 @@ import org.lwjgl.util.vector.Vector3f;
 // Camera class that calculates the position of the camera
 public class Camera {
 
-    private Vector3f position = new Vector3f(0,0,0);
+    private Vector3f position = new Vector3f(0,20,0);
 
-    private float pitch;
+    private float pitch = 50;
     private float yaw;
     private float roll;
 
@@ -28,6 +28,11 @@ public class Camera {
         if(Keyboard.isKeyDown(Keyboard.KEY_S)){
             position.z+=.1;
         }
+        if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)){
+            position.y+=.1;
+        }
+        if(Keyboard.isKeyDown(Keyboard.KEY_X))
+            position.y-=.1;
     }
 
     // Getters and setters

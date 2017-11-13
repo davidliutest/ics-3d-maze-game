@@ -1,8 +1,17 @@
 package map;
-import java.util.ArrayList;
-import java.util.List;
 
 import datastruct.RC;
+import entities.Entity;
+import models.Model;
+import models.TextureModel;
+import org.lwjgl.util.vector.Vector3f;
+import render.Loader;
+import render.OBJLoader;
+import textures.Texture;
+
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MapGen {
 
@@ -15,18 +24,36 @@ public class MapGen {
     private boolean[][] visited;
     private List<RC> deque;
 
-    public int[][] gen(int r, int c) {
+    public List<Entity> gen(int r, int c, Loader loader) throws FileNotFoundException {
         this.mapr = r;
         this.mapc = c;
         map = new int[mapr][mapc];
-        RC start = new RC((int)(Math.random()*mapr),(int)(Math.random()*mapc));
+        RC start = new RC((int) (Math.random() * mapr), (int) (Math.random() * mapc));
         visited = new boolean[mapr][mapc];
         deque = new ArrayList<RC>();
         deque.add(start);
-        while(!deque.isEmpty()) {
-            dfs(deque.remove((int)(Math.random() * deque.size())));
+        while (!deque.isEmpty()) {
+            dfs(deque.remove((int) (Math.random() * deque.size())));
         }
-        return map;
+        Model model = OBJLoader.loadObjectModel("cube", loader);
+        TextureModel staticModel = new TextureModel(model, new Texture(loader.loadTexture("white")));
+        List<Entity> entityList = new ArrayList<Entity>();
+        for (int i = 0; i < mapr; i++) {
+            for (int j = 0; j < mapc; j++) {
+                System.out.print(map[i][j]);
+                if(map[i][j] == 0) {
+                    entityList.add(
+                            new Entity(
+                                    staticModel,
+                                    new Vector3f(j*2, 0, (i - 10)*2),
+                                    0, 0, 0, 1
+                            )
+                    );
+                }
+            }
+            System.out.println();
+        }
+        return entityList;
     }
 
     private void dfs(RC cur) {
@@ -73,7 +100,7 @@ public class MapGen {
     }
 
     public static boolean chance(double c) {
-        return (Math.random() < c / 100.0)?true:false;
+        return Math.random() < c / 100.0;
     }
 
     private int[] genOrder() {
