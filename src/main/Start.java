@@ -14,7 +14,6 @@ import java.io.ObjectInputStream;
 
 public class Start {
     public static JFrame f;
-    public static EditorApplication editorApp;
     static{
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -70,12 +69,11 @@ public class Start {
             }
         });
 
-        editorApp = new EditorApplication();
         JButton editor = new JButton("MAP EDITOR");
         editor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                editorApp.start();
+                new EditorApplication().start();
             }
         });
 
