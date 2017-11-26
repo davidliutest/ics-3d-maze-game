@@ -10,7 +10,7 @@ uniform sampler2D texSampler;
 uniform vec3 lightColour;
 
 void main(void){
-
+    /*
     vec3 unitNormal  = normalize(surfaceNormal);
     vec3 unitLightVector = normalize(toLightVector);
 
@@ -19,4 +19,6 @@ void main(void){
     vec3 diffuse = brightness * lightColour;
 
 	color_out = vec4(diffuse, 1.0) * texture(texSampler, passTexCoords);
+	*/
+	color_out = texture(texSampler, passTexCoords);
 }

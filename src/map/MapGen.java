@@ -1,5 +1,6 @@
 package map;
 
+import editor.MapData;
 import datastruct.RC;
 import entities.Entity;
 import models.Model;
@@ -24,6 +25,42 @@ public class MapGen {
     private boolean[][] visited;
     private List<RC> deque;
 
+    public List<Entity> load(MapData mapData, Loader loader) throws FileNotFoundException {
+        Model model = OBJLoader.loadObjectModel("cube", loader);
+        TextureModel cube1 = new TextureModel(model, new Texture(loader.loadTexture("tile1")));
+        TextureModel cube2 = new TextureModel(model, new Texture(loader.loadTexture("tile2")));
+        TextureModel cube3 = new TextureModel(model, new Texture(loader.loadTexture("tile3")));
+        TextureModel cube4 = new TextureModel(model, new Texture(loader.loadTexture("tile4")));
+        TextureModel cube5 = new TextureModel(model, new Texture(loader.loadTexture("tile5")));
+        List<Entity> entityList = new ArrayList<Entity>();
+        for (int i = 0; i < mapData.mapr; i++) {
+            for (int j = 0; j < mapData.mapc; j++) {
+                if(mapData.data[i][j] == 1)
+                    entityList.add(
+                            new Entity(cube1, new Vector3f(j*2, 0, (i - 10)*2),0, 0, 0, 1)
+                    );
+                else if(mapData.data[i][j] == 2)
+                    entityList.add(
+                            new Entity(cube2, new Vector3f(j*2, 0, (i - 10)*2),0, 0, 0, 1)
+                    );
+                else if(mapData.data[i][j] == 3)
+                    entityList.add(
+                            new Entity(cube3, new Vector3f(j*2, 0, (i - 10)*2),0, 0, 0, 1)
+                    );
+                else if(mapData.data[i][j] == 4)
+                    entityList.add(
+                            new Entity(cube4, new Vector3f(j*2, 0, (i - 10)*2),0, 0, 0, 1)
+                    );
+                else if(mapData.data[i][j] == 5)
+                    entityList.add(
+                            new Entity(cube5, new Vector3f(j*2, 0, (i - 10)*2),0, 0, 0, 1)
+                    );
+
+            }
+        }
+        return entityList;
+    }
+
     public List<Entity> gen(int r, int c, Loader loader) throws FileNotFoundException {
         this.mapr = r;
         this.mapc = c;
@@ -36,7 +73,7 @@ public class MapGen {
             dfs(deque.remove((int) (Math.random() * deque.size())));
         }
         Model model = OBJLoader.loadObjectModel("cube", loader);
-        TextureModel staticModel = new TextureModel(model, new Texture(loader.loadTexture("white")));
+        TextureModel staticModel = new TextureModel(model, new Texture(loader.loadTexture("tile1")));
         List<Entity> entityList = new ArrayList<Entity>();
         for (int i = 0; i < mapr; i++) {
             for (int j = 0; j < mapc; j++) {
