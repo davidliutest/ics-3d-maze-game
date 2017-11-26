@@ -74,7 +74,7 @@ public class MapGen {
                             check(next, cur, moveR[i], moveC[i])
                     ) {
                 dfs(next);
-                break;
+                return;
             }
         }
     }

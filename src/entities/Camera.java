@@ -17,22 +17,22 @@ public class Camera {
     // Change position of the Camera based on key presses
     public void move(){
         if(Keyboard.isKeyDown(Keyboard.KEY_W)){
-            position.z-=.1;
+            position.z-=1;
         }
         if(Keyboard.isKeyDown(Keyboard.KEY_D)){
-            position.x+=.1;
+            position.x+=1;
         }
         if(Keyboard.isKeyDown(Keyboard.KEY_A)){
-            position.x-=.1;
+            position.x-=1;
         }
         if(Keyboard.isKeyDown(Keyboard.KEY_S)){
-            position.z+=.1;
+            position.z+=1;
         }
         if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)){
-            position.y+=.1;
+            position.y+=1;
         }
         if(Keyboard.isKeyDown(Keyboard.KEY_X))
-            position.y-=.1;
+            position.y-=1;
     }
 
     // Getters and setters
