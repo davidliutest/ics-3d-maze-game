@@ -6,7 +6,7 @@ import org.lwjgl.util.vector.Vector3f;
 // Camera class that calculates the position of the camera
 public class Camera {
 
-    private Vector3f position = new Vector3f(0,20,0);
+    private Vector3f position = new Vector3f(20,50,25);
 
     private float pitch = 50;
     private float yaw;
