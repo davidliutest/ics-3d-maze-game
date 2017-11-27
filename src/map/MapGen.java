@@ -92,7 +92,7 @@ public class MapGen {
         }
         return entityList;
     }
-
+    //generates maze
     private void dfs(RC cur) {
         if(!visited[cur.r][cur.c]) {
             deque.add(cur);

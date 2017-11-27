@@ -30,7 +30,7 @@ public class Mouse implements MouseListener, MouseMotionListener, MouseWheelList
 		mx = e.getX();
 		my = e.getY();
 	}
-	// soom in and out function
+	// zoom in and out function
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent e) {
 		wheel += -1 * e.getWheelRotation();

@@ -7,7 +7,7 @@ public class Keys implements KeyListener{
 	
 	private boolean[] keys;
 	public boolean u, d, l, r;
-	
+	//Key constructor
 	public Keys() {
 		keys = new boolean[1000];
 	}
