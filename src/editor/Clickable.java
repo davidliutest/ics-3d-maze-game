@@ -13,13 +13,13 @@ public abstract class Clickable extends Rectangle {
 
 	protected boolean active = true;
 	protected boolean hide = false;
-	
+	//clickable constructor
 	public Clickable(EditorApplication app, BufferedImage i, int x, int y, int w, int h) {
 		super(x, y, w, h);
 		this.app = app;
 		this.image = i;
 	}
-	
+	//
 	protected void text(Graphics g, String s) {
 		FontMetrics m = g.getFontMetrics(g.getFont());
 		g.drawString(s, x+(width-m.stringWidth(s))/2, y+(height-m.getHeight())/2+m.getAscent());

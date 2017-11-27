@@ -19,7 +19,7 @@ public class EditorApplication implements Runnable{
     private Editor editor;
     private Keys keys;
     private Mouse mouse;
-
+    //starts game
     public synchronized void start() {
         if(running)
             return;
@@ -27,7 +27,7 @@ public class EditorApplication implements Runnable{
         thread = new Thread(this);
         thread.start();
     }
-
+    //creates frame
     public void create() {
         frame = new JFrame("Maze and Pathfinding Test");
         frame.setSize(initWidth, initHeight);
@@ -57,10 +57,10 @@ public class EditorApplication implements Runnable{
         editor = new Editor(this);
         editor.create();
     }
-
+    // run gui
     public void run() {
         create();
-        int FPS = 60;
+        int FPS = 240;
         double timePerTick = 1000000000 / FPS;
         double delta = 0;
         double curTime;
@@ -80,7 +80,7 @@ public class EditorApplication implements Runnable{
         }
         stop();
     }
-
+    //renders game
     public void render() {
         bs = canvas.getBufferStrategy();
         if(bs == null) {
@@ -93,7 +93,7 @@ public class EditorApplication implements Runnable{
         bs.show();
         g.dispose();
     }
-
+    //stops game
     public synchronized void stop() {
         if(!running)
             return;
@@ -104,7 +104,7 @@ public class EditorApplication implements Runnable{
             e.printStackTrace();
         }
     }
-
+    //getters
     public int getCanvWidth() {
         return canvas.getWidth();
     }

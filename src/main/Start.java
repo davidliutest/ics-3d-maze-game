@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 public class Start {
+    //different style
     public static JFrame f;
     static{
         try {
@@ -22,14 +23,17 @@ public class Start {
         }
     }
     public static void main(String[] args){
+        //creates frame
         f = new JFrame("3D MAZE");
         f.setSize(600,600);
         f.setResizable(false);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel p = new JPanel(new GridBagLayout());
+        // grid bag layout
         GridBagConstraints con = new GridBagConstraints();
-
+        // creates buttons
         JButton start1 = new JButton("GENERATE RANDOM MAZE");
+        // add action listeners
         start1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -40,7 +44,6 @@ public class Start {
                 }
             }
         });
-
         JFileChooser fileChooser = new JFileChooser();
         JButton start2 = new JButton("LOAD MAZE");
         start2.addActionListener(new ActionListener() {
@@ -68,7 +71,6 @@ public class Start {
                 }
             }
         });
-
         JButton editor = new JButton("MAP EDITOR");
         editor.addActionListener(new ActionListener() {
             @Override
@@ -91,6 +93,7 @@ public class Start {
                 System.exit(0);
             }
         });
+        //gridbaglayout to format
         ImageIcon image = new ImageIcon("res/image/maze.jpg");
         JLabel label = new JLabel(image);
         con.gridx = 0;
@@ -111,6 +114,7 @@ public class Start {
         f.add(p);
         f.setVisible(true);
     }
+    //shows instructions
     public static void instruction(){
         JFrame instruction = new JFrame();
         JPanel instructionpic = new JPanel();

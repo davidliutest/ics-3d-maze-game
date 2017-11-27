@@ -6,12 +6,12 @@ import java.awt.image.BufferedImage;
 public class Tile extends Clickable {
 
     private int id;
-
+    //Tile constructor
     public Tile(EditorApplication app, BufferedImage i, int x, int y, int w, int h, int id) {
         super(app, i, x, y, w, h);
         this.id = id;
     }
-
+    //sets button picture
     public void render(Graphics g, int x, int y, int td) {
         if(!hide) {
             setBounds(x, y, td, td);
@@ -23,7 +23,7 @@ public class Tile extends Clickable {
             resetClick();
         }
     }
-
+    //clicks the button, set image
     protected void click() {
         int select = app.getEditor().getSelect();
         if(select != -1) {
