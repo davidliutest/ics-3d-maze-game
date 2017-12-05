@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 public class Start {
-    //different style
+    // Different style
     public static JFrame f;
     static{
         try {
@@ -25,7 +25,7 @@ public class Start {
     public static void main(String[] args){
         //creates frame
         f = new JFrame("3D MAZE");
-        f.setSize(600,600);
+        f.setSize(1000, 600);
         f.setResizable(false);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel p = new JPanel(new GridBagLayout());
@@ -38,6 +38,7 @@ public class Start {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
+                    f.setVisible(false);
                     Application.start(null);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -58,6 +59,7 @@ public class Start {
                         FileInputStream fileIn = new FileInputStream(selected);
                         ObjectInputStream in = new ObjectInputStream(fileIn);
                         MapData mapData = (MapData) in.readObject();
+                        f.setVisible(false);
                         Application.start(mapData);
                         in.close();
                         fileIn.close();
@@ -79,53 +81,39 @@ public class Start {
             }
         });
 
-        JButton instructions = new JButton("INSTRUCTIONS");
-        instructions.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                instruction();
-            }
-        });
-        JButton exitGame = new JButton("EXIT");
-        exitGame.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                System.exit(0);
-            }
-        });
-        //gridbaglayout to format
-        ImageIcon image = new ImageIcon("res/image/maze.jpg");
-        JLabel label = new JLabel(image);
+        con.gridwidth = 1;
+        con.gridheight = 1;
+        con.insets = new Insets(10,10,10,10);
+        con.weightx = 1;
+        con.weighty = 1;
         con.gridx = 0;
         con.gridy = 0;
+
+        //gridbaglayout to format
+        JLabel label = new JLabel("ICS Maze Game");
+        label.setFont(new Font("Arial", 0, 48));
+
         p.add(label,con);
-        con.insets = new Insets(10,10,10,10);
 
-        JPanel p1 = new JPanel();
-        p1.add(start1);
-        p1.add(start2);
-        p1.add(editor);
-        p1.add(instructions);
-        p1.add(exitGame);
+        con.gridy++;
 
-        con.gridy = 5; con.gridx = 0;
-        con.gridwidth = 1; con.gridheight = 1;
-        p.add(p1,con);
+        JPanel btnPanel = new JPanel();
+        btnPanel.add(start1);
+        btnPanel.add(start2);
+        btnPanel.add(editor);
+        p.add(btnPanel, con);
+
+        con.gridy++;
+
+        JLabel instr = new JLabel();
+        instr.setText(
+                "For actual game: WASD to pan camera, SPACE to move camera up, X to move camera down. " +
+                        "For map editor: ARROW KEYS to pan camera, SCROLL to adjust map size."
+        );
+        p.add(instr, con);
+
         f.add(p);
         f.setVisible(true);
-    }
-    //shows instructions
-    public static void instruction(){
-        JFrame instruction = new JFrame();
-        JPanel instructionpic = new JPanel();
-        ImageIcon inimage = new ImageIcon("res/image/instruction.JPG");
-        JLabel inlabel = new JLabel(inimage);
-        instructionpic.add(inlabel);
-        instruction.setLayout(new BorderLayout());
-        instruction.add(instructionpic, BorderLayout.CENTER);
-        instruction.pack();
-        instruction.setTitle("INSTRUCTIONS");
-        instruction.setVisible(true);
     }
 
 }

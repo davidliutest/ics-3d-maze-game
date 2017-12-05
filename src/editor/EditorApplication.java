@@ -60,14 +60,18 @@ public class EditorApplication implements Runnable{
     // run gui
     public void run() {
         create();
-        int FPS = 240;
+        int FPS = 250;
         double timePerTick = 1000000000 / FPS;
         double delta = 0;
         double curTime;
         double lastTime = System.nanoTime();
+        long timer = 0;
+        int ticks = 0;
+
         while(running) {
             curTime = System.nanoTime();
             delta += (curTime - lastTime) / timePerTick;
+            timer += curTime - lastTime;
             lastTime = curTime;
             if(delta >= 1) {
                 // Handle input
@@ -75,7 +79,13 @@ public class EditorApplication implements Runnable{
                 // Update GUI dimensions
                 // Render and update game
                 render();
+                ticks++;
                 delta--;
+            }
+            if(timer >= 1000000000) {
+                System.out.println(ticks);
+                ticks = 0;
+                timer = 0;
             }
         }
         stop();

@@ -66,6 +66,7 @@ public class Application {
 		shader.close();
 		loader.close();
 		Displayer.close();
+		Start.f.dispose();
 	}
 
 }

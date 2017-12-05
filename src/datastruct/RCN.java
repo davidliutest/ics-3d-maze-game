@@ -14,12 +14,14 @@ public class RCN {
         this.parent = par;
     }
 
-    public double dist(RCN rcn) {return Math.sqrt(Math.pow(this.c - rcn.c, 2) + Math.pow(this.r - rcn.r, 2));}
+    public double dist(RCN rcn) {
+        return Math.sqrt(Math.pow(this.c - rcn.c, 2) + Math.pow(this.r - rcn.r, 2));
+    }
 
     public boolean isNeighbor(RCN rcn) {
         int dc = Math.abs(this.c - rcn.c);
         int dr = Math.abs(this.r - rcn.r);
-        return(dc == 1 && dr == 0)||(dc == 0 && dr == 1)?true:false;
+        return (dc == 1 && dr == 0)||(dc == 0 && dr == 1);
     }
 
     public void setRC(int r, int c) {

@@ -1,14 +1,11 @@
 package editor;
 
-// ADD HEADERS!!!!!!!!!!!!!!!!!
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public abstract class Clickable extends Rectangle {
 	
 	protected EditorApplication app;
-	// ADD HOVER IMAGE LIGHTER IMAGE!!!!!!!!!!!!
 	protected BufferedImage image, imageHover;
 
 	protected boolean active = true;

@@ -10,6 +10,7 @@ public class Button extends Clickable {
     private String str;
     private Click press;
     private boolean square;
+
     // Constructor for button
     public Button(EditorApplication app, BufferedImage i, float posx, float posy, int w, int h, String s, Click press) {
         super(
@@ -29,7 +30,8 @@ public class Button extends Clickable {
     public void setSquare() {
         square = true;
     }
-    //render button set clickable and changable
+
+    // Render button set clickable and changable
     public void render(Graphics g) {
         if(!hide) {
             int nw = (int)((float)app.getCanvWidth()/app.getInitWidth()*posw);
