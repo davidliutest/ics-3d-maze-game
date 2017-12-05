@@ -150,5 +150,7 @@ public class MapGen {
         }
         return order;
     }
-
+    public int[][] getMapArray(){
+        return map;
+    }
 }

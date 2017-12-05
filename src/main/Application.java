@@ -3,12 +3,19 @@ package main;
 import editor.MapData;
 import entities.Camera;
 import entities.Entity;
+import entities.Light;
+import entities.Movement;
 import map.MapGen;
+import models.Model;
+import models.TextureModel;
 import org.lwjgl.opengl.Display;
+import org.lwjgl.util.vector.Vector3f;
 import render.Displayer;
 import render.Loader;
+import render.OBJLoader;
 import render.Renderer;
 import shader.StaticShader;
+import textures.Texture;
 
 import java.util.List;
 
@@ -23,19 +30,13 @@ public class Application {
 		StaticShader shader = new StaticShader();
 		Renderer renderer = new Renderer(shader);
 
-		/*
 		// Actual model
-		Model staticModel = OBJLoader.loadObjectModel("stall", loader);
-		Texture texture = new Texture(loader.loadTexture("stallTexture"));
+		Model staticModel = OBJLoader.loadObjectModel("dragon", loader);
+		Texture texture = new Texture(loader.loadTexture("fire"));
 		TextureModel textureModel = new TextureModel(staticModel, texture);
-		Entity entity = new Entity(textureModel, new Vector3f(5,-5,-25),0,0,0,1);
+		Entity entity = new Entity(textureModel, new Vector3f(0,0,0),0,0,0,1);
+		entity.setScale(0.2f);
 
-		Model mob1 = OBJLoader.loadObjectModel("dragon", loader);
-		Texture mobTexture = new Texture(loader.loadTexture("white"));
-		TextureModel mobTexModel = new TextureModel (mob1, mobTexture);
-		// Creates a temp mob
-		Mob dragon = new Mob (mobTexModel, new Vector3f(-8,-5,-25),0,0,0,1,100,100);
-		*/
 		MapGen mapGen = new MapGen();
 		List<Entity> entityList;
 		if(data == null)
@@ -46,19 +47,18 @@ public class Application {
 		//Light light = new Light(new Vector3f(0,0,-20),new Vector3f(1,1,1));
 		// Creates the camera
 		Camera camera = new Camera();
-
+		Movement movement = new Movement();
 		// Main game loop
 		while(!Display.isCloseRequested()) {
-			//entity.increaseRotation(0,1,0);
-			//dragon.increaseRotation(0,1,0);
 			camera.move();
+			movement.move(entity);
 			renderer.start();
 			shader.start();
+			renderer.render(entity, shader);
 			//shader.loadLight(light);
 			shader.loadViewMatrix(camera);
 			for(Entity e : entityList)
 				renderer.render(e, shader);
-			//renderer.render(dragon, shader);
 			shader.stop();
 			Displayer.update();
 		}
