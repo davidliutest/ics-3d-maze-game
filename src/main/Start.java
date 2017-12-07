@@ -107,7 +107,7 @@ public class Start {
 
         JLabel instr = new JLabel();
         instr.setText(
-                "For actual game: WASD to pan camera, SPACE to move camera up, X to move camera down. " +
+                "For actual game: WASD to pan camera, SPACE to move camera up, X to move camera down, ARROW KEYS to move PLAYER. " +
                         "For map editor: ARROW KEYS to pan camera, SCROLL to adjust map size."
         );
         p.add(instr, con);

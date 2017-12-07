@@ -35,27 +35,26 @@ public class MapGen {
         List<Entity> entityList = new ArrayList<Entity>();
         for (int i = 0; i < mapData.mapr; i++) {
             for (int j = 0; j < mapData.mapc; j++) {
-                if(mapData.data[i][j] == 1)
+                if (mapData.data[i][j] == 1)
                     entityList.add(
-                            new Entity(cube1, new Vector3f(j*2, 0, (i - 10)*2),0, 0, 0, 1)
+                            new Entity(cube1, new Vector3f(j * 10, 0, (i - 10) * 10), 0, 0, 0, 5)
                     );
-                else if(mapData.data[i][j] == 2)
+                else if (mapData.data[i][j] == 2)
                     entityList.add(
-                            new Entity(cube2, new Vector3f(j*2, 0, (i - 10)*2),0, 0, 0, 1)
+                            new Entity(cube2, new Vector3f(j * 10, 0, (i - 10) * 10), 0, 0, 0, 5)
                     );
-                else if(mapData.data[i][j] == 3)
+                else if (mapData.data[i][j] == 3)
                     entityList.add(
-                            new Entity(cube3, new Vector3f(j*2, 0, (i - 10)*2),0, 0, 0, 1)
+                            new Entity(cube3, new Vector3f(j * 10, 0, (i - 10) * 10), 0, 0, 0, 5)
                     );
-                else if(mapData.data[i][j] == 4)
+                else if (mapData.data[i][j] == 4)
                     entityList.add(
-                            new Entity(cube4, new Vector3f(j*2, 0, (i - 10)*2),0, 0, 0, 1)
+                            new Entity(cube4, new Vector3f(j * 10, 0, (i - 10) * 10), 0, 0, 0, 5)
                     );
-                else if(mapData.data[i][j] == 5)
+                else if (mapData.data[i][j] == 5)
                     entityList.add(
-                            new Entity(cube5, new Vector3f(j*2, 0, (i - 10)*2),0, 0, 0, 1)
+                            new Entity(cube5, new Vector3f(j * 10, 0, (i - 10) * 10), 0, 0, 0, 5)
                     );
-
             }
         }
         return entityList;
@@ -77,16 +76,16 @@ public class MapGen {
         List<Entity> entityList = new ArrayList<Entity>();
         for (int i = 0; i < mapr; i++) {
             for (int j = 0; j < mapc; j++) {
-                System.out.print(map[i][j]);
-                if(map[i][j] == 0) {
-                    entityList.add(
-                            new Entity(
-                                    staticModel,
-                                    new Vector3f(j*2, 0, (i - 10)*2),
-                                    0, 0, 0, 1
-                            )
-                    );
-                }
+                    System.out.print(map[i][j]);
+                    if (map[i][j] == 0) {
+                        entityList.add(
+                                new Entity(
+                                        staticModel,
+                                        new Vector3f(j * 10, 0, (i - 10) * 10),
+                                        0, 0, 0, 5
+                                )
+                        );
+                    }
             }
             System.out.println();
         }

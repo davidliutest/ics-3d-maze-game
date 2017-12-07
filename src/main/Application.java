@@ -3,7 +3,6 @@ package main;
 import editor.MapData;
 import entities.Camera;
 import entities.Entity;
-import entities.Light;
 import entities.Movement;
 import map.MapGen;
 import models.Model;
@@ -34,8 +33,7 @@ public class Application {
 		Model staticModel = OBJLoader.loadObjectModel("dragon", loader);
 		Texture texture = new Texture(loader.loadTexture("fire"));
 		TextureModel textureModel = new TextureModel(staticModel, texture);
-		Entity entity = new Entity(textureModel, new Vector3f(0,0,0),0,0,0,1);
-		entity.setScale(0.2f);
+		Entity entity = new Entity(textureModel, new Vector3f(0,0,0),0,0,0,.75f);
 
 		MapGen mapGen = new MapGen();
 		List<Entity> entityList;
