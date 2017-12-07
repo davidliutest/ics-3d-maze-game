@@ -4,7 +4,7 @@ import org.lwjgl.input.Keyboard;
 
 public class Movement {
     public Movement(){}
-
+    // changes position of player with keys
     public void move(Entity e){
         if (Keyboard.isKeyDown(Keyboard.KEY_UP)) {
             e.increasePosition(0,0,-0.5f);

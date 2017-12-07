@@ -46,7 +46,7 @@ public class Application {
 		// Creates the camera
 		Camera camera = new Camera();
 		Movement movement = new Movement();
-		// Main game loop
+		// Main game loop loads movements camera entities
 		while(!Display.isCloseRequested()) {
 			camera.move();
 			movement.move(entity);
