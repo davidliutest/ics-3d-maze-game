@@ -70,7 +70,7 @@ public class Loader {
 		GL30.glBindVertexArray(vaoID);
 		return vaoID;
 	}
-	
+
 	public void storeDataInAttribList(int attribNum, int coordSize, float[] data) {
 		int vboID = GL15.glGenBuffers();
 		vbos.add(vboID);

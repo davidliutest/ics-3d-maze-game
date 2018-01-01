@@ -30,8 +30,8 @@ public class Application {
 		Renderer renderer = new Renderer(shader);
 
 		// Actual model
-		Model staticModel = OBJLoader.loadObjectModel("dragon", loader);
-		Texture texture = new Texture(loader.loadTexture("fire"));
+		Model staticModel = OBJLoader.loadObjectModel("stall", loader);
+		Texture texture = new Texture(loader.loadTexture("stallTexture"));
 		TextureModel textureModel = new TextureModel(staticModel, texture);
 		Entity entity = new Entity(textureModel, new Vector3f(0,0,0),0,0,0,.75f);
 

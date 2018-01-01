@@ -11,7 +11,6 @@ public class Entity {
     protected Vector3f position;
     protected float rotX,rotY,rotZ;
     protected float scale;
-
     protected boolean destroy;
 
     public Entity(TextureModel model, Vector3f position, float rotX, float rotY, float rotZ, float scale) {
