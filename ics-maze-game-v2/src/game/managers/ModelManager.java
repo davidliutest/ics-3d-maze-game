@@ -12,13 +12,13 @@ public class ModelManager {
     private Handler handler;
 
     // Textures
-    public ModelTexture grey, green, red, beige;
+    public ModelTexture grey, green, red, beige, fire;
 
     // RawModels
-    public RawModel cube, square;
+    public RawModel cube, square, dragon;
 
     // TextureModels
-    public TextureModel greyCube, greenCube, redCube, beigeSquare;
+    public TextureModel greyCube, greenCube, redCube, beigeSquare, redDragon;
 
     public ModelManager(Handler handler) {
         this.handler = handler;
@@ -30,16 +30,19 @@ public class ModelManager {
         green = loadTexture("green");
         red = loadTexture("red");
         beige = loadTexture("beige");
+        fire = loadTexture("fire");
 
         // RawModels
         cube = loadRawModel("cube");
         square = loadRawModel("square");
+        dragon = loadRawModel("dragon");
 
         // TextureModels
         beigeSquare = new TextureModel(square, beige);
         greyCube = new TextureModel(cube, grey);
         greenCube = new TextureModel(cube, green);
         redCube = new TextureModel(cube, red);
+        redDragon = new TextureModel(dragon, red);
     }
 
     public ModelTexture loadTexture(String file) {
