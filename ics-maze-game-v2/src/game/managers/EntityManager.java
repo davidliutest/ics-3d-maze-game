@@ -41,7 +41,7 @@ public class EntityManager {
 
     public void update() {
         // Renders entities
-        handler.getRenderer().update(entityList);
+        handler.getRenderer().update(entityList, handler.getEntityManager().getPlayer().getPos());
         // Updates entities
         for(Entity e : entityList) {
             e.update();

@@ -2,6 +2,7 @@ package engine.render;
 
 import engine.entities.Entity;
 import engine.render.models.TextureModel;
+import game.datastruct.RC;
 import org.lwjgl.opengl.*;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
@@ -50,8 +51,8 @@ public class Renderer {
 		GL11.glClearColor(1, 1, 1, 1);
 	}
 
-	public void update(List<Entity> entityList) {
-		cam.update();
+	public void update(List<Entity> entityList, Vector3f r) {
+		cam.update(r);
 		start();
 		shader.start();
 		for(Entity e : entityList) {
