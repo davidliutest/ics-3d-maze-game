@@ -37,7 +37,6 @@ public class OBJConverter {
         List<Vector3f> vertList = new ArrayList<Vector3f>();
         List<Vector2f> texList = new ArrayList<Vector2f>();
         List<Vector3f> normList = new ArrayList<Vector3f>();
-        List<Integer> indList = new ArrayList<Integer>();
         float[] vertices = null;
         float[] normals = null;
         float[] textures = null;
