@@ -1,8 +1,5 @@
 package engine.render;
 
-import game.datastruct.RC;
-import game.entities.mob.Collision;
-import game.main.Handler;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector3f;

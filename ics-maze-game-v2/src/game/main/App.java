@@ -56,6 +56,10 @@ public class App {
         while(checkStop()) {
             entityManager.update();
             Window.update();
+            if(handler.getEntityManager().getPlayer().getPos().x == handler.getMap().getEnd().r && handler.getEntityManager().getPlayer().getPos().z == handler.getMap().getEnd().c ){
+                close();
+                System.out.println("end");
+            }
         }
     }
 

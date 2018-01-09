@@ -32,6 +32,7 @@ public class EntityManager {
                 handler, new Vector3f(start.c * len + len/2,0, start.r * len + len/2),
                 0,0,0,1f, new RC(handler.getMap().getStart())
         );
+
         entityList.add(player);
         for(Entity e : entityList) {
             e.setPosY(e.getLenY()/2);
