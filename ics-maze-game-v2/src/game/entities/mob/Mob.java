@@ -52,8 +52,7 @@ public abstract class Mob extends Entity{
                 dx += 0.15f;
                 move(1);
             }
-        }
-        if(Math.abs(pdz) >= 0.15f) {
+        } else if(Math.abs(pdz) >= 0.15f) {
             if (pdz > 0) {
                 dz -= 0.15f;
                 move(0);

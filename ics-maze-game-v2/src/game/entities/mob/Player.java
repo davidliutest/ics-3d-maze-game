@@ -4,7 +4,6 @@ import engine.render.Camera;
 import game.datastruct.RC;
 import game.main.Handler;
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector3f;
 
 import java.security.Key;
@@ -18,7 +17,7 @@ public class Player extends Mob {
 
     public Player(Handler handler, Vector3f position, float rotx, float roty, float rotz, float scale, RC mapPos) {
         super(
-                handler, handler.getModelManager().greenCube,
+                handler, handler.getModelManager().redDragon,
                 position, rotx, roty, rotz, scale, mapPos
         );
     }
