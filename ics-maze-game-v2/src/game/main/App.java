@@ -45,9 +45,9 @@ public class App {
         handler.create(loader, renderer, modelManager, map, entityManager);
         Window.create();
         modelManager.create();
-        renderer.create();
         map.create();
         entityManager.create();
+        renderer.create(handler.getEntityManager().getPlayer().getPos());
     }
 
     public void run() {

@@ -24,9 +24,9 @@ public class Renderer {
 		cam = new Camera();
 	}
 
-	public void create(){
+	public void create(Vector3f playerPos){
 		shader.create();
-		cam.create();
+		cam.create(playerPos);
 		float aspectRatio = (float) Display.getWidth() / (float) Display.getHeight();
 		float yScale = (float) ((1f / Math.tan(Math.toRadians(FOV/2f)))* aspectRatio);
 		float xScale = yScale / aspectRatio;

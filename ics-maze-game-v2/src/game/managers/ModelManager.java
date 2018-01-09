@@ -27,7 +27,7 @@ public class ModelManager {
     public void create() {
         // Textures
         grey = loadTexture("grey");
-        green = loadTexture("green");
+        green = loadTexture("sinon");
         red = loadTexture("red");
         beige = loadTexture("beige");
 
