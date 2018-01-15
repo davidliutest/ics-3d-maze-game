@@ -23,22 +23,9 @@ public class Player extends Mob {
     }
 
     public void act() {
-        float y = 0;
+        //float y = 0;
         yaw = Camera.yaw;
-        change = yaw%360;
-        y = rot - Math.abs(change);
-        System.out.println(y);
-
-        if(y > 0) {
-            roty -= 2f;
-        }
-        if( y < 0){
-            roty += 2f;
-        }
-        if (y == 0) {
-            roty +=0;
-        }
-        rot = Math.abs(change);
+        changeRot(0,yaw,0);
         int x = 4;
         if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)){
             x/=2;

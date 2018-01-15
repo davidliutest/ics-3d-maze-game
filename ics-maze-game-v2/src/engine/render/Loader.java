@@ -9,6 +9,7 @@ import org.lwjgl.opengl.GL30;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.FloatBuffer;
@@ -90,8 +91,29 @@ public class Loader {
 		GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, vboID);
 		IntBuffer buffer = storeIntBuffer(indices);
 		GL15.glBufferData(GL15.GL_ELEMENT_ARRAY_BUFFER, buffer, GL15.GL_STATIC_DRAW);
-	}
+	}//*********************88
 
+	public RawModel loadVAO(float[] positions, int dimensions) {
+		int vaoID = createVAO();
+		this.storeDataInAttributeList(0, dimensions, positions);
+		GL30.glBindVertexArray(0);
+		return new RawModel(vaoID, positions.length / dimensions, null);
+	}
+	private void storeDataInAttributeList(int attributeNumber, int coordinateSize, float[] data) {
+		int vboID = GL15.glGenBuffers();
+		vbos.add(vboID);
+		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vboID);
+		FloatBuffer buffer = storeFloatBuffer(data);
+		GL15.glBufferData(GL15.GL_ARRAY_BUFFER, buffer, GL15.GL_STATIC_DRAW);
+		GL20.glVertexAttribPointer(attributeNumber, coordinateSize, GL11.GL_FLOAT, false, 0, 0);
+		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0);
+	}
+	private int createVAO() {
+		int vaoID = GL30.glGenVertexArrays();
+		vaos.add(vaoID);
+		GL30.glBindVertexArray(vaoID);
+		return vaoID;
+	}
 	// Loads textures
 	public int loadTexture(String file) {
 		Texture texture = null;
@@ -110,6 +132,7 @@ public class Loader {
 		textures.add(texture.getTextureID());
 		return texture.getTextureID();
 	}
+
 
 	// Initializes buffers to be sent to the GPU
 

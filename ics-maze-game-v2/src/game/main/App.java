@@ -14,6 +14,8 @@ package game.main;
 // Stucture
 // common methods is first in specified order, then helper methods in order of usage
 
+import engine.gui.GuiRend;
+import engine.gui.GuiTex;
 import engine.render.Loader;
 import engine.render.Renderer;
 import engine.render.Window;
@@ -22,6 +24,10 @@ import game.managers.ModelManager;
 import game.map.Map;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
+import org.lwjgl.util.vector.Vector2f;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class App {
 

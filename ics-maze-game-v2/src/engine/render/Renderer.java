@@ -5,6 +5,7 @@ import engine.render.models.TextureModel;
 import game.datastruct.RC;
 import org.lwjgl.opengl.*;
 import org.lwjgl.util.vector.Matrix4f;
+import org.lwjgl.util.vector.Vector2f;
 import org.lwjgl.util.vector.Vector3f;
 
 import java.util.List;
@@ -86,6 +87,7 @@ public class Renderer {
 	}
 
 	// Methods to apply operations for matrices
+
 	public Matrix4f createTransMatrix(Vector3f translation, float rx, float ry, float rz, float scale) {
 		Matrix4f matrix = new Matrix4f();
 		matrix.setIdentity();
@@ -96,7 +98,6 @@ public class Renderer {
 		Matrix4f.scale(new Vector3f(scale, scale, scale), matrix, matrix);
 		return matrix;
 	}
-
 	public Matrix4f createViewMatrix() {
 		Matrix4f viewMatrix = new Matrix4f();
 		viewMatrix.setIdentity();

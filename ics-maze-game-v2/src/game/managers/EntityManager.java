@@ -1,6 +1,7 @@
 package game.managers;
 
 import engine.entities.Entity;
+import engine.gui.GuiRend;
 import game.datastruct.RC;
 import game.entities.mob.Collision;
 import game.entities.mob.Player;
@@ -18,11 +19,13 @@ public class EntityManager {
     private Player player;
     private Collision collision;
     private Pathfinder pathfinder;
+    private GuiRend guiRend;
 
     public EntityManager(Handler handler) {
         this.handler = handler;
         entityList = new ArrayList<Entity>();
         collision = new Collision();
+        guiRend = new GuiRend(handler.getLoader());
     }
 
     public void create() {
@@ -47,6 +50,7 @@ public class EntityManager {
         for(Entity e : entityList) {
             e.update();
         }
+        guiRend.render(handler.getModelManager().getGui());
     }
 
     public void addEntities(List<Entity> toAdd) {

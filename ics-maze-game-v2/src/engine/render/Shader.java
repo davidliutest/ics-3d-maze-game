@@ -20,20 +20,29 @@ public class Shader {
 	private static final String FRAGMENT_FILE = "/shaders/fragShader.glsl";
 	private int locTransMatrix, locProjMatrix, locViewMatrix;
 
-	public void create() {
+	public void create(String VERTEX_FILE, String FRAGMENT_FILE) {
 		vertexShaderID = loadFile(VERTEX_FILE, GL20.GL_VERTEX_SHADER);
 		fragShaderID = loadFile(FRAGMENT_FILE, GL20.GL_FRAGMENT_SHADER);
 		programID = GL20.glCreateProgram();
 		GL20.glAttachShader(programID, vertexShaderID);
 		GL20.glAttachShader(programID, fragShaderID);
-		GL20.glBindAttribLocation(programID, 0, "pos");
-		GL20.glBindAttribLocation(programID, 1, "textCoords");
-		GL20.glBindAttribLocation(programID, 2, "normal");
+		bindAttribute(0, "pos");
+		bindAttribute(1, "textCoords");
+		bindAttribute(2, "normal");
 		GL20.glLinkProgram(programID);
 		GL20.glValidateProgram(programID);
-		locTransMatrix = GL20.glGetUniformLocation(programID, "transMatrix");
-		locProjMatrix = GL20.glGetUniformLocation(programID,"projMatrix");
-		locViewMatrix = GL20.glGetUniformLocation(programID,"viewMatrix");
+		locTransMatrix = getUniformLocation("transMatrix");
+		locProjMatrix = getUniformLocation("projMatrix");
+		locViewMatrix = getUniformLocation("viewMatrix");
+	}
+	public void bindAttribute(int attribute, String variableName){
+		GL20.glBindAttribLocation(programID, attribute, variableName);
+	}
+	public int getUniformLocation(String uniformName){
+		return GL20.glGetUniformLocation(programID,uniformName);
+	}
+	public void create() {
+		this.create("/shaders/vertexShader.glsl","/shaders/fragShader.glsl");
 	}
 
 	public void start() {

@@ -1,5 +1,6 @@
 package game.main;
 
+import engine.gui.GuiRend;
 import engine.render.Loader;
 import engine.render.Renderer;
 import game.managers.EntityManager;

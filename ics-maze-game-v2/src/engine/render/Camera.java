@@ -14,19 +14,40 @@ public class Camera {
     public static float roll = 0;
 
     public void create(Vector3f start) {
-        pos = new Vector3f(start.x, start.y+5f, start.z);
+        pos = new Vector3f(start.x, start.y+8f, start.z);
     }
 
     public static void update(Vector3f r) {
         // Mouse movement
         pitch -= Mouse.getDY() * 0.03f;
         yaw += Mouse.getDX() * 0.03f;
-        pos.x =r.x;
-        pos.z =r.z;
+
         if (Keyboard.isKeyDown(Keyboard.KEY_SPACE))
             pos.y += 1;
-        if (Keyboard.isKeyDown(Keyboard.KEY_X))
-            pos.y -= 1;
+        if (Keyboard.isKeyDown(Keyboard.KEY_X)) {
+            pos.y = 100f;
+            if(Keyboard.isKeyDown(Keyboard.KEY_UP)){
+                pos.z -= Math.sin(Math.toRadians(90 - yaw));
+                pos.x += Math.cos(Math.toRadians(90 - yaw));
+            }
+            if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)){
+                pos.z += Math.sin(Math.toRadians(90 - yaw));
+                pos.x -= Math.cos(Math.toRadians(90 - yaw));
+            }
+            if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT)){
+                pos.z += Math.sin(Math.toRadians(90 - yaw));
+                pos.x -= Math.cos(Math.toRadians(90 - yaw));
+            }
+            if(Keyboard.isKeyDown(Keyboard.KEY_LEFT)){
+                pos.z -= Math.sin(Math.toRadians(90 - yaw));
+                pos.x += Math.cos(Math.toRadians(90 - yaw));
+            }
+        }
+        else {
+            pos.x = r.x;
+            pos.z = r.z;
+            pos.y = r.y +8f;
+        }
     }
 
     // Getters and setters
