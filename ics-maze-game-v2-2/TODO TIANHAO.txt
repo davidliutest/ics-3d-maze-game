@@ -1,0 +1,25 @@
+I am done basis of the game, time for you to do stuff:
+
+Make Gameplay class to determine game play stuff (like win and lose)
+Make State class and StateManager class for different GameStates
+Make MenuState, InstructionState, WinState, LoseState
+Attach camera to player (make it first person)
+Make CHEAT to detach camera for Ms S
+Make CHEAT to have INF health for Ms S
+Add UI Buttons with JPanel and Title and other shit
+Add cool textures to the mobs
+Add health and damage system
+Comment everything
+Other things to add with your discretion
+Lighting if you want
+Playtest everything, I want NO BUGS
+Add 2D MapEditor with option to add enemies, start, and end to the map editor (in the old code)
+
+Keep everything in one screen, including MapEditor
+DO NOT procrastinate
+DO NOT COPY code, change as much as possible and use your brain to come up with it yourself
+make code EFFICIENT and CLEAN and CONCISE
+ask me if you do not understand something
+
+
+
