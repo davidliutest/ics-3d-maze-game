@@ -12,16 +12,19 @@ public class GuiShader extends Shader{
     private int location_transformationMatrix;
 
     public GuiShader() {
-        create(VERTEX_FILE, FRAGMENT_FILE);
+        //create(VERTEX_FILE, FRAGMENT_FILE);
     }
 
     public void loadTransformation(Matrix4f matrix){
         super.loadMatrix(location_transformationMatrix, matrix);
     }
-    protected void getAllUniformLocations() {
+
+    @Override
+    public void getUniformLocation() {
         location_transformationMatrix = super.getUniformLocation("transformationMatrix");
     }
-    protected void bindAttributes() {
+    @Override
+    public void bindAttribute() {
         super.bindAttribute(0, "position");
     }
 }

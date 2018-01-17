@@ -1,7 +1,5 @@
 package editor;
 
-import editor.EditorApplication;
-import editor.MapData;
 import game.Launcher;
 
 import javax.swing.*;
@@ -59,9 +57,9 @@ public class Start {
                     try {
                         FileInputStream fileIn = new FileInputStream(selected);
                         ObjectInputStream in = new ObjectInputStream(fileIn);
-                        MapData mapData = (MapData) in.readObject();
+                        MapData1 mapData1 = (MapData1) in.readObject();
                         f.dispose();
-                        Launcher.run();
+                        Launcher.run(mapData1);
                         in.close();
                         fileIn.close();
                     } catch (IOException i) {
@@ -108,7 +106,7 @@ public class Start {
 
         JLabel instr = new JLabel();
         instr.setText(
-                "For actual game: WASD to pan camera, SPACE to move camera up, X to move camera down, ARROW KEYS to move PLAYER. " +
+                "For actual game: WASD to move character, Hold shift to run, X cheat and see birdseye view of the map" +
                         "For map editor: ARROW KEYS to pan camera, SCROLL to adjust map size."
         );
         p.add(instr, con);

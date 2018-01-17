@@ -9,7 +9,7 @@ import java.util.ArrayDeque;
 public class Enemy extends Mob {
 
     public Enemy(Handler handler, Vector3f position, float rotx, float roty, float rotz, float scale, RC mapPos) {
-        super(handler, handler.getModelManager().redCube, position, rotx, roty, rotz, scale, mapPos);
+        super(handler, handler.getModelManager().redCube, position, rotx, roty, rotz, .5f, mapPos);
     }
 
     public void act() {

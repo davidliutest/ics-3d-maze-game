@@ -18,7 +18,7 @@ public class Player extends Mob {
     public Player(Handler handler, Vector3f position, float rotx, float roty, float rotz, float scale, RC mapPos) {
         super(
                 handler, handler.getModelManager().redDragon,
-                position, rotx, roty, rotz, scale, mapPos
+                position, rotx, roty, rotz, .2f, mapPos
         );
     }
 
@@ -54,9 +54,6 @@ public class Player extends Mob {
             dx -= Math.cos(Math.toRadians(180 - yaw)) / x;
             move(dx > 0 ? 1 : 3);
         }
-    }
-    public void sprint(){
-
     }
     public int getHp() {
         return hp;

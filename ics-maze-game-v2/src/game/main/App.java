@@ -14,20 +14,18 @@ package game.main;
 // Stucture
 // common methods is first in specified order, then helper methods in order of usage
 
-import engine.gui.GuiRend;
-import engine.gui.GuiTex;
+import editor.MapData1;
 import engine.render.Loader;
 import engine.render.Renderer;
 import engine.render.Window;
+import game.datastruct.MapData;
 import game.managers.EntityManager;
 import game.managers.ModelManager;
 import game.map.Map;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
-import org.lwjgl.util.vector.Vector2f;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 public class App {
 
@@ -47,6 +45,14 @@ public class App {
         map = new Map(handler, 20, 20);
     }
 
+    public void create(MapData1 mapData1) {
+        handler.create(loader, renderer, modelManager,map , entityManager);
+        Window.create();
+        modelManager.create();
+        map.create(map.convert(mapData1,map.makeEntityList(mapData1)));
+        entityManager.create();
+        renderer.create(handler.getEntityManager().getPlayer().getPos());
+    }
     public void create() {
         handler.create(loader, renderer, modelManager, map, entityManager);
         Window.create();
@@ -56,6 +62,18 @@ public class App {
         renderer.create(handler.getEntityManager().getPlayer().getPos());
     }
 
+    public void run(MapData1 mapData1) {
+        create(mapData1);
+        // Main game loop
+        while(checkStop()) {
+            entityManager.update();
+            Window.update();
+            if(handler.getEntityManager().getPlayer().getPos().x == handler.getMap().getEnd().r && handler.getEntityManager().getPlayer().getPos().z == handler.getMap().getEnd().c ){
+                close();
+                System.out.println("end");
+            }
+        }
+    }
     public void run() {
         create();
         // Main game loop

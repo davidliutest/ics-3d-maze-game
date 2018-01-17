@@ -14,7 +14,7 @@ public class Camera {
     public static float roll = 0;
 
     public void create(Vector3f start) {
-        pos = new Vector3f(start.x, start.y+8f, start.z);
+        pos = new Vector3f(start.x, start.y+2.5f, start.z);
     }
 
     public static void update(Vector3f r) {
@@ -46,7 +46,7 @@ public class Camera {
         else {
             pos.x = r.x;
             pos.z = r.z;
-            pos.y = r.y +8f;
+            pos.y = r.y +2.5f;
         }
     }
 

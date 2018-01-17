@@ -20,9 +20,9 @@ public class Shader {
 	private static final String FRAGMENT_FILE = "/shaders/fragShader.glsl";
 	private int locTransMatrix, locProjMatrix, locViewMatrix;
 
-	public void create(String VERTEX_FILE, String FRAGMENT_FILE) {
-		vertexShaderID = loadFile(VERTEX_FILE, GL20.GL_VERTEX_SHADER);
-		fragShaderID = loadFile(FRAGMENT_FILE, GL20.GL_FRAGMENT_SHADER);
+	public void create(String F1, String F2) {
+		vertexShaderID = loadFile(F1, GL20.GL_VERTEX_SHADER);
+		fragShaderID = loadFile(F2, GL20.GL_FRAGMENT_SHADER);
 		programID = GL20.glCreateProgram();
 		GL20.glAttachShader(programID, vertexShaderID);
 		GL20.glAttachShader(programID, fragShaderID);
@@ -35,14 +35,17 @@ public class Shader {
 		locProjMatrix = getUniformLocation("projMatrix");
 		locViewMatrix = getUniformLocation("viewMatrix");
 	}
+
+	public void create() {
+		this.create(VERTEX_FILE,FRAGMENT_FILE);
+	}
+	public void bindAttribute(){};
+	public void getUniformLocation(){};
 	public void bindAttribute(int attribute, String variableName){
 		GL20.glBindAttribLocation(programID, attribute, variableName);
 	}
 	public int getUniformLocation(String uniformName){
 		return GL20.glGetUniformLocation(programID,uniformName);
-	}
-	public void create() {
-		this.create("/shaders/vertexShader.glsl","/shaders/fragShader.glsl");
 	}
 
 	public void start() {

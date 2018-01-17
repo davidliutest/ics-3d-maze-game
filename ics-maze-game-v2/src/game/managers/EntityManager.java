@@ -25,7 +25,6 @@ public class EntityManager {
         this.handler = handler;
         entityList = new ArrayList<Entity>();
         collision = new Collision();
-        guiRend = new GuiRend(handler.getLoader());
     }
 
     public void create() {
@@ -41,16 +40,17 @@ public class EntityManager {
             e.setPosY(e.getLenY()/2);
         }
         pathfinder = new Pathfinder(handler.getMap());
+        guiRend = new GuiRend(handler.getLoader());
     }
 
     public void update() {
+        guiRend.render(handler.getModelManager().getGui());
         // Renders entities
         handler.getRenderer().update(entityList, handler.getEntityManager().getPlayer().getPos());
         // Updates entities
         for(Entity e : entityList) {
             e.update();
         }
-        guiRend.render(handler.getModelManager().getGui());
     }
 
     public void addEntities(List<Entity> toAdd) {

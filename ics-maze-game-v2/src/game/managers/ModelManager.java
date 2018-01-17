@@ -21,11 +21,10 @@ public class ModelManager {
     public ModelTexture grey, green, red, beige, fire;
 
     // RawModels
-    public RawModel cube, square, dragon;
+    public RawModel cube, square, dragon, guardian;
 
     // TextureModels
     public TextureModel greyCube, greenCube, redCube, beigeSquare, redDragon;
-
     // Gui
     private List<GuiTex> guis;
 
@@ -39,23 +38,24 @@ public class ModelManager {
         green = loadTexture("green");
         red = loadTexture("red");
         beige = loadTexture("beige");
-        fire = loadTexture("fire");
+        fire = loadTexture("p");
 
         // RawModels
         cube = loadRawModel("cube");
         square = loadRawModel("square");
+        guardian = loadRawModel("guardian");
         dragon = loadRawModel("dragon");
 
         // TextureModels
         beigeSquare = new TextureModel(square, beige);
         greyCube = new TextureModel(cube, grey);
         greenCube = new TextureModel(cube, green);
-        redCube = new TextureModel(cube, red);
-        redDragon = new TextureModel(dragon, red);
+        redCube = new TextureModel(dragon, red);
+        redDragon = new TextureModel(guardian, fire);
 
         // Gui
         guis = new ArrayList<GuiTex>();
-        GuiTex gui = new GuiTex(handler.getLoader().loadTexture("red"), new Vector2f(0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
+        GuiTex gui = new GuiTex(handler.getLoader().loadTexture("stallTexture"), new Vector2f(0.5f, 0.5f), new Vector2f(0.25f, 0.25f));
         guis.add(gui);
     }
 

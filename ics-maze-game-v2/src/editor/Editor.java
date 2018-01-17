@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class Editor {
 
     private static BufferedImage[] images;
 
-    private Map map;
+    private Map1 map1;
     private float scale;
     private float co, ro;
     private int td;
@@ -30,14 +31,14 @@ public class Editor {
         BufferedImage sheet;
         images = new BufferedImage[7];
         try {
-            sheet = ImageIO.read(Editor.class.getResource("/textures/tiles.png"));
+            sheet = ImageIO.read(Editor.class.getResource("/textures/t.png"));
             for(int i = 0; i < images.length; i++)
                 images[i] = sheet.getSubimage(i * 16, 0, 16, 16);
         } catch(IOException e) {
             e.printStackTrace();
             System.exit(1);
         }
-        map = new Map(app, 20, 20);
+        map1 = new Map1(app, 20, 20);
         setScale(1.0f);
 
         bttns = new ArrayList<Button>();
@@ -45,12 +46,14 @@ public class Editor {
     }
 
     public void create() {
-        map.create();
+        map1.create();
         // Side bar
         for(int i = 0; i < 2; i++) {
             for(int j = 0; j < 3; j++) {
                 float len = sideWidth/3;
                 final int id = i*3+j;
+                if (id == 5)
+                    break;
                 Button b = new Button(
                         app, images[i*3+j], mainWidth+len/2+len*j, 0.1f+(len+0.01f)*i, 40, 40, "",
                         new Click(){
@@ -77,8 +80,14 @@ public class Editor {
                             try {
                                 FileInputStream fileIn = new FileInputStream(selected);
                                 ObjectInputStream in = new ObjectInputStream(fileIn);
-                                MapData mapData = (MapData) in.readObject();
-                                map.load(mapData);
+                                MapData1 mapData1 = (MapData1) in.readObject();
+                                for(int i = 0; i < mapData1.data.length; i++){
+                                    for(int j =0; j<mapData1.data[1].length;j++) {
+                                        System.out.print(mapData1.data[i][j]);
+                                    }
+                                    System.out.println();
+                                }
+                                map1.load(mapData1);
                                 in.close();
                                 fileIn.close();
                             } catch (IOException i) {
@@ -105,7 +114,7 @@ public class Editor {
                             try {
                                 FileOutputStream fileOut = new FileOutputStream(selected);
                                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
-                                out.writeObject(map.save());
+                                out.writeObject(map1.save());
                                 out.close();
                                 fileOut.close();
                             } catch (IOException i) {
@@ -120,12 +129,12 @@ public class Editor {
 
     public void render(Graphics g) {
         int cs = (int)Math.max(0,co/td);
-        int ce = (int)Math.min(map.width(),(co+app.getCanvWidth()*mainWidth)/td+1);
+        int ce = (int)Math.min(map1.width(),(co+app.getCanvWidth()*mainWidth)/td+1);
         int rs = (int)Math.max(0,ro/td);
-        int re = (int)Math.min(map.height(),(ro+app.getCanvHeight())/td+1);
+        int re = (int)Math.min(map1.height(),(ro+app.getCanvHeight())/td+1);
         for(int r = rs; r < re; r++) {
             for(int c = cs; c < ce; c++) {
-                Tile cur = map.tile(r, c);
+                Tile cur = map1.tile(r, c);
                 cur.render(g, (int)(c*td-co), (int)(r*td-ro), td);
             }
         }

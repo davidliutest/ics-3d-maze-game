@@ -1,12 +1,15 @@
 package editor;
 
-public class Map {
+import game.main.Handler;
+
+public class Map1 {
 
     private transient EditorApplication app;
     private transient Tile[][] map;
     private int mapr, mapc;
+
     //map constructor
-    public Map(EditorApplication app, int mapr, int mapc) {
+    public Map1(EditorApplication app, int mapr, int mapc) {
         this.app = app;
         this.mapr = mapr;
         this.mapc = mapc;
@@ -33,15 +36,15 @@ public class Map {
         return mapc;
     }
     //save map
-    public MapData save() {
-        MapData mapSave = new MapData(mapr, mapc);
+    public MapData1 save() {
+        MapData1 mapSave = new MapData1(mapr, mapc);
         for(int i = 0; i < mapr; i++)
             for(int j = 0; j < mapc; j++)
                 mapSave.data[i][j] = map[i][j].id();
         return mapSave;
     }
     //load map
-    public void load(MapData mapLoad) {
+    public void load(MapData1 mapLoad) {
         map = new Tile[mapLoad.mapr][mapLoad.mapc];
         for(int i = 0; i < mapr; i++)
             for(int j = 0; j < mapc; j++)
