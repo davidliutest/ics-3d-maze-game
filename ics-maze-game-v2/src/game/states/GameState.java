@@ -19,6 +19,7 @@ public class GameState extends State {
     private GuiManager guiManager;
     private GameLogic gameLogic;
 
+
     public GameState(Handler handler) {
         super(handler);
         map = new Map(handler, 20, 20);
@@ -35,7 +36,7 @@ public class GameState extends State {
     }
     public void create(MapData1 mapData1){
         map.create(map.convert(mapData1,map.makeEntityList(mapData1)));
-        entityManager.create();
+        entityManager.create(mapData1);
         guiManager.addGuiObj(handler.getAssetManager().hpbarEmpty);
         guiManager.addGuiObj(hpBar = handler.getAssetManager().hpbar);
     }

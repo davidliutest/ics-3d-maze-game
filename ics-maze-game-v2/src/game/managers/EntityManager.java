@@ -1,5 +1,6 @@
 package game.managers;
 
+import editor.MapData1;
 import engine.entities.Entity;
 import game.datastruct.RC;
 import game.entities.mob.Collision;
@@ -26,6 +27,20 @@ public class EntityManager {
     }
 
     public void create() {
+        RC start = handler.getMap().getStart();
+        float len = handler.getMap().getWallLen();
+        player = new Player(
+                handler, new Vector3f(start.c * len + len/2,0, start.r * len + len/2),
+                0,0,0,0.5f, new RC(handler.getMap().getStart())
+        );
+        player.setVisible(false);
+        entityList.add(player);
+        for(Entity e : entityList) {
+            e.setPosY(e.getLenY()/2);
+        }
+        pathfinder = new Pathfinder(handler.getMap());
+    }
+    public void create(MapData1 mapData1) {
         RC start = handler.getMap().getStart();
         float len = handler.getMap().getWallLen();
         player = new Player(

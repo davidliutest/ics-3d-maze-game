@@ -125,13 +125,12 @@ public class Map {
     private final float wallLen = 20f;
 
     public Map(Handler handler, int mapr, int mapc) {
-        this.handler = handler;
         mapGen = new MapGen(handler);
+        this.handler = handler;
         this.mapr = mapr;
         this.mapc = mapc;
         this.map = new int[mapr][mapc];
     }
-
     public void create() {
         MapData mapData = mapGen.gen(mapr, mapc);
         map = mapData.map;
