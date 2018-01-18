@@ -4,6 +4,8 @@ import editor.MapData1;
 import game.main.Handler;
 import game.states.*;
 
+// Manages and handles different states of the application
+// Responsible for changing "scenes"
 public class StateManager {
 
     private Handler handler;
@@ -13,6 +15,7 @@ public class StateManager {
     public StateManager(Handler handler) {
         this.handler = handler;
         states = new State[5];
+        // Initializes all the states of the game
         states[0] = new MenuState(handler);
         states[1] = new HelpState(handler);
         states[2] = new GameState(handler);
@@ -26,6 +29,7 @@ public class StateManager {
             s.create();
     }
 
+    // Creates using mapData
     public void create(MapData1 mapData1) {
         for(int i=0; i<states.length; i++) {
             if(i == 2) {
@@ -41,6 +45,7 @@ public class StateManager {
         states[cur].update();
     }
 
+    //Setters and Getters
     public State getCurState() {
         return states[cur];
     }

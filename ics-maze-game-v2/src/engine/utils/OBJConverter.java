@@ -10,23 +10,25 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-INSTRUCTIONS FOR BLENDER:
-Load BLENDER OBJ WAVEFRONT FILES
-    MAKE SURE THE ORIGIN is at the CENTER of the model!
-        To do this Shift + Ctrl + Alt + C and press Geometry to Origin!
-    USE UV EDITING TO TEXTURE MODELS
-    INCLUDE NORMALS
-    # of "v" lines should equal total number of vertices of the model
-    # of "vt" lines vary
-    # of "vn" lines vary
-    # of "f" lines should be total number of faces of the model
-TEXTURES
-    Make sure images have dimension that are POWERS OF 2
-    If not working, try rotating and reflecting image
- */
+// Loads OBJ files to a model
 
 public class OBJConverter {
+
+    /*
+        INSTRUCTIONS FOR BLENDER:
+        Load BLENDER OBJ WAVEFRONT FILES
+            MAKE SURE THE ORIGIN is at the CENTER of the model!
+                To do this Shift + Ctrl + Alt + C and press Geometry to Origin!
+            USE UV EDITING TO TEXTURE MODELS
+            INCLUDE NORMALS
+            # of "v" lines should equal total number of vertices of the model
+            # of "vt" lines vary
+            # of "vn" lines vary
+            # of "f" lines should be total number of faces of the model
+        TEXTURES
+            Make sure images have dimension that are POWERS OF 2
+            If not working, try rotating and reflecting image
+     */
 
     private static final long MAX_LINES = 1000000;
 
@@ -45,6 +47,7 @@ public class OBJConverter {
         float[] bounds = null;
         boolean face3 = true;
         try {
+            // Use FileReader amd BufferedReader to read obj files
             String file = "/obj/" + fileName + ".obj";
             br = new BufferedReader(new InputStreamReader(OBJConverter.class.getResourceAsStream(file)));
             while ((ln = br.readLine()) != null && cnt < MAX_LINES) {
@@ -68,9 +71,8 @@ public class OBJConverter {
                 cnt++;
             }
             face3 = faces.get(0).split("\\s+").length-1 == 3;
-            //System.out.println(vertList);
-            //System.out.println(texList);
-            //System.out.println(normList);
+
+            // Creates the arrays that store the model data
             if (face3) {
                 vertices = new float[faces.size() * 3 * 3];
                 textures = new float[faces.size() * 3 * 2];
@@ -125,8 +127,8 @@ public class OBJConverter {
                     indices[i * 6 + 5] = i * 4 + 2;
                 }
             }
+
             // Determines min and max x, y, z coordinates for collision from vertices list
-            // float[] = {minx, miny, minz, maxx, maxy, maxz}
             Vector3f cur = vertList.get(0);
             bounds = new float[6];
             bounds[0] = cur.x;

@@ -5,6 +5,7 @@ import game.main.Handler;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector3f;
 
+// Stores info of the player
 public class Player extends Mob {
 
     public Player(Handler handler, Vector3f position, float rotx, float roty, float rotz, float scale, RC mapPos) {
@@ -14,6 +15,7 @@ public class Player extends Mob {
         );
     }
 
+    // Updates player position with keyboard presses (to move player) and camera yaw
     public void act() {
         float yaw = handler.getRenderer().getCam().getYaw();
         setRotY(-yaw);

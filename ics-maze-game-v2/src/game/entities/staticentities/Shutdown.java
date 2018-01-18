@@ -4,6 +4,7 @@ import game.datastruct.RC;
 import game.main.Handler;
 import org.lwjgl.util.vector.Vector3f;
 
+// Stores info of the objective of the maze (the shutdown controller entity)
 public class Shutdown extends StaticEntity {
 
     private RC mapPos;

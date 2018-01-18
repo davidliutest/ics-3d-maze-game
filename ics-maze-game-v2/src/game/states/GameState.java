@@ -11,6 +11,7 @@ import game.map.Map;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.util.vector.Vector3f;
 
+// State responsible for the gameplay
 public class GameState extends State {
 
     private Map map;
@@ -34,23 +35,29 @@ public class GameState extends State {
         guiManager.addGuiObj(handler.getAssetManager().hpbarEmpty);
         guiManager.addGuiObj(hpBar = handler.getAssetManager().hpbar);
     }
+
     public void create(MapData1 mapData1){
         map.create(map.convert(mapData1,map.makeEntityList(mapData1)));
         entityManager.create(mapData1);
         guiManager.addGuiObj(handler.getAssetManager().hpbarEmpty);
         guiManager.addGuiObj(hpBar = handler.getAssetManager().hpbar);
     }
+
     public void update() {
         entityManager.update();
-
         guiManager.update();
+
+        // Updates health bar
         hpBar.setScale(Math.max(0, entityManager.getPlayer().getHealth()/100*0.9f), hpBar.getScale().y);
 
+        // Updates camera position from mouse movement
+        // Pans camera
         Camera cam = handler.getRenderer().getCam();
         cam.update(entityManager.getPlayer().getPos());
         gameLogic.update();
     }
 
+    // Resets variables for user to play maze again
     public void reset() {
         entityManager.getEntityList().clear();
         map.create();

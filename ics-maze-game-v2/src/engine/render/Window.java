@@ -1,8 +1,5 @@
 package engine.render;
 
-// Uses LWJGL lib to create a display window
-// Width, height, and FPS cap is set here
-
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.ContextAttribs;
@@ -10,6 +7,8 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.PixelFormat;
 
+// Uses LWJGL lib to create a display window
+// Width, height, and FPS cap is set here
 public class Window {
 
     // Window variables
@@ -44,6 +43,8 @@ public class Window {
     public static void close() {
         Display.destroy();
     }
+
+    // Getters and Setters
 
     public static int getWidth() {
         return Display.getWidth();

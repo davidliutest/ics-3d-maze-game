@@ -8,12 +8,12 @@ import org.lwjgl.util.vector.Vector3f;
 
 import java.util.List;
 
-// Class that renders models through a projection matrix
-// Uses LWJGL methods to do so
+// Renders models using OpenGL
 public class Renderer {
 
 	private StaticShader shader;
 	private Camera cam;
+	// Information for the proj matrix
 	private static final float FOV = 70;
 	private static final float PLANE_NEAR = 0.1f;
 	private static final float PLANE_FAR = 1000;
@@ -24,6 +24,8 @@ public class Renderer {
 		cam = new Camera();
 	}
 
+	// Initializes the projection matrix, which is responsible for the 2D projection
+	// of the 3D environment onto the user's screen
 	public void create(){
 		shader.create();
 		cam.create();
@@ -43,6 +45,7 @@ public class Renderer {
 		shader.stop();
 	}
 
+	// Clears screen for drawing
 	public void start() {
 		// 1 is maximum for these RGB vals
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
@@ -50,32 +53,43 @@ public class Renderer {
 		GL11.glClearColor(1, 1, 1, 1);
 	}
 
+	// Renders each entity in the entityList
 	public void update(List<Entity> entityList) {
-		//cam.update();
 		start();
 		shader.start();
 		for(Entity e : entityList) {
-			//if(e.getVisible())
-				render(e);
+			render(e);
 		}
+		// Loads the view matrix of the camera in OpenGL
 		shader.loadViewMatrix(createViewMatrix());
 		shader.stop();
 	}
 
+	// "Closes" shader to prevent memory leak
 	public void close() {
 		shader.close();
 	}
 
+	// How entities are rendered:
+	// Information of entities are stored in VAOs (essentially an array of values)
+	// An array of VAOs are stored in a VBO (essentially a 2D array)
+	// VBOs are then sent to OpenGL to be rendered into a model
+	// More info in Loader class
+
+	// Renders an entity using OpenGL
 	public void render(Entity entity) {
 		TextureModel model = entity.getTextureModel();
+		// Binds the vaos
 		GL30.glBindVertexArray(model.getVaoID());
 		GL20.glEnableVertexAttribArray(0);
 		GL20.glEnableVertexAttribArray(1);
 		GL20.glEnableVertexAttribArray(2);
+		// Each entity has its transformation matrix that accounts for changes in its position in the 3D environment
 		Matrix4f transMatrix = createTransMatrix(
 				entity.getPos(), entity.getRotX(), entity.getRotY(), entity.getRotZ(), entity.getScale()
 		);
 		shader.loadTransMatrix(transMatrix);
+		// Entities are loaded using a collection of triangles
 		GL13.glActiveTexture(GL13.GL_TEXTURE0);
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, model.getTexture().getID());
 		GL11.glDrawElements(GL11.GL_TRIANGLES, model.getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
@@ -97,6 +111,7 @@ public class Renderer {
 		return matrix;
 	}
 
+	// Creates the view matrix using the camera
 	public Matrix4f createViewMatrix() {
 		Matrix4f viewMatrix = new Matrix4f();
 		viewMatrix.setIdentity();
@@ -108,6 +123,7 @@ public class Renderer {
 		return viewMatrix;
 	}
 
+	// Setters and Getters
 	public Camera getCam() {
 		return cam;
 	}

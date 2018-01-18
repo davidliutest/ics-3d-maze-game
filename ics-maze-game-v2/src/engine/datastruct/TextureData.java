@@ -2,6 +2,7 @@ package engine.datastruct;
 
 public class TextureData {
 
+    // Data structure that holds info for a Texture image
     public int texID;
     public float width, height;
 

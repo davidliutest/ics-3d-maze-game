@@ -3,6 +3,8 @@ package game.states;
 import editor.MapData1;
 import game.main.Handler;
 
+// Base abstract class for a state
+// A State inits, creates, and updates all required components
 public abstract class State {
 
     protected Handler handler;

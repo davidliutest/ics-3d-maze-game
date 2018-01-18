@@ -5,6 +5,7 @@ import game.main.Handler;
 
 import java.util.ArrayList;
 
+// Manages GUI objs of a State
 public class GuiManager {
 
     private Handler handler;

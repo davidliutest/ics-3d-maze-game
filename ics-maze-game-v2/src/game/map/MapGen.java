@@ -13,6 +13,7 @@ import org.lwjgl.util.vector.Vector3f;
 import java.util.ArrayList;
 import java.util.List;
 
+// Generates the map using DFS with recusive backtracking
 public class MapGen {
 
     private Handler handler;

@@ -6,10 +6,12 @@ import game.datastruct.RC;
 import game.main.Handler;
 import org.lwjgl.util.vector.Vector3f;
 
+// Base class for entities who exhibits movement (Mobs)
 public abstract class Mob extends Entity {
 
     protected Handler handler;
     protected RC mapPos;
+    // Movement values to change position of entity
     protected float dx, dy, dz;
     private float health = 100f;
 
@@ -42,6 +44,7 @@ public abstract class Mob extends Entity {
         mapPos.c = (int)(pos.getX() / handler.getMap().getWallLen());
     }
 
+    // Move mob to specified xz pos
     protected void goToPos(float xpos, float zpos) {
         float pdx = pos.x - xpos;
         float pdz = pos.z - zpos;
@@ -65,6 +68,7 @@ public abstract class Mob extends Entity {
         }
     }
 
+    // Getters and setters
     public void setMapPos(RC mapPos) {
         this.mapPos = mapPos;
     }

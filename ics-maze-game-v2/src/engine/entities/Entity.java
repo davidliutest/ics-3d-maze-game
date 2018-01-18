@@ -4,12 +4,12 @@ import engine.render.models.TextureModel;
 import org.lwjgl.util.vector.Vector3f;
 
 // Base class for all entities of the game
-// Contains and changes the pos of the entity
-// Position of the entity is the center of the model (both x, y, z)
-
+// Contains information that defines an entity
 public class Entity {
 
     protected TextureModel model;
+    // Position of the entity is the center of the entity in the 3D coordinate system
+    // Len is the maximum x, y, z length of the original model
     protected Vector3f pos, len;
     protected float rotx, roty, rotz, scale;
     protected boolean visible = true;
@@ -53,6 +53,7 @@ public class Entity {
         this.rotz += dz;
     }
 
+    // Returns the shortest straight line distance between cur entity and another
     public float dist(Entity e) {
         return (float)Math.sqrt(
                 Math.pow(pos.x - e.getPosX(),2) +

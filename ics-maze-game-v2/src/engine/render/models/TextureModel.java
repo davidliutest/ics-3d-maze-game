@@ -1,6 +1,6 @@
 package engine.render.models;
 
-// Data structure to store a Model along with a texture
+// Stores information of a model that is textured (with an image) to be rendered
 public class TextureModel extends RawModel {
 
 	public ModelTexture texture;

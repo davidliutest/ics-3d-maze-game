@@ -4,6 +4,7 @@ import engine.entities.Entity;
 
 import java.util.List;
 
+// Data structure that contains info for a map
 public class MapData {
 
     public int mapr, mapc;

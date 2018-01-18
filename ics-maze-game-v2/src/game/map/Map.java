@@ -14,6 +14,7 @@ import org.lwjgl.util.vector.Vector3f;
 import java.util.ArrayList;
 import java.util.List;
 
+// Stores information of the maze
 public class Map {
 
     private int mapr, mapc;
@@ -31,6 +32,8 @@ public class Map {
         this.mapc = mapc;
         this.map = new int[mapr][mapc];
     }
+
+    // Generates the maze using MapGen
     public void create() {
         MapData mapData = mapGen.gen(mapr, mapc);
         map = mapData.map;
@@ -38,6 +41,8 @@ public class Map {
         end = mapData.end;
         handler.getEntityManager().addEntities(mapData.entityList);
     }
+
+    // Generates map using loaded data
     public void create(MapData mapData){
 
         for(int i = 0; i < mapData.map[1].length; i++){
@@ -51,9 +56,13 @@ public class Map {
         map = mapData.map;
         handler.getEntityManager().addEntities(mapData.entityList);
     }
+
+    // Convert's 2d MapData to 3d MapData
     public MapData convert(MapData1 mapData1,List<Entity> entity){
         return new MapData(mapData1.mapr,mapData1.mapc, mapData1.data, entity, mapData1.start, mapData1.end);
     }
+
+    //Creates entity list for objects on 2D map
     public List<Entity> makeEntityList(MapData1 mapdata1){
         eList = new ArrayList<>();
         for(int i = 0; i < mapdata1.data.length; i++){
@@ -98,6 +107,8 @@ public class Map {
 
         return eList;
     }
+
+    // Getters and Setters
     public int getMapR() {
         return mapr;
     }

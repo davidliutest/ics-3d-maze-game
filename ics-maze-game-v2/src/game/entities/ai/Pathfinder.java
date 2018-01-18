@@ -9,6 +9,9 @@ import game.map.Map;
 import java.util.ArrayDeque;
 import java.util.PriorityQueue;
 
+// Calculates the shortest path a Mob should take to reach a destination
+// Map obj is used as the graph
+// A* algorithm is used
 public class Pathfinder {
 
     private Map map;
@@ -20,7 +23,10 @@ public class Pathfinder {
         this.map = map;
     }
 
+    // Generates the path the Mob should take
     public ArrayDeque<RC> path(Mob a, Mob b) {
+        // Uses a priority queue with heuristics for efficiency
+        // (As opposed to BFS)
         PriorityQueue<RCN> open = new PriorityQueue<RCN>(10, rccCompare);
         ArrayDeque<RCN> closed = new ArrayDeque<RCN>();
         RC start = a.getMapPos();
@@ -68,6 +74,7 @@ public class Pathfinder {
                 }
             }
         }
+        // No path is found
         if(!found)
             return null;
         ArrayDeque<RC> path = new ArrayDeque<RC>();
@@ -83,6 +90,7 @@ public class Pathfinder {
         return Math.abs(end.c - cur.c) + Math.abs(end.r - cur.r);
     }
 
+    // Checks collision and if path is blocked
     private boolean blocked(int r, int c) {
         return map.getMapTile(r, c) == 0;
     }

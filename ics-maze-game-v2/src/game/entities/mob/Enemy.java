@@ -6,6 +6,8 @@ import org.lwjgl.util.vector.Vector3f;
 
 import java.util.ArrayDeque;
 
+// Stores information for a Robot enemy that chases the player
+// and damages player health
 public class Enemy extends Mob {
 
     private Vector3f lastPos;
@@ -22,12 +24,12 @@ public class Enemy extends Mob {
             // Attack
             player.changeHealth(-0.25f);
         } else if(mapPos.equals(player.getMapPos())) {
-            // Close
+            // Close to player and follow in direct line
             float toX = player.getPosX();
             float toZ = player.getPosZ();
             goToPos(toX, toZ);
         } else if(distToPlayer < handler.getMap().getWallLen() * 3) {
-            // Seek
+            // Seek player using pathfinding algorithm
             ArrayDeque<RC> path = handler.getEntityManager().getPathfinder().path(
                     this, player
             );
@@ -39,6 +41,7 @@ public class Enemy extends Mob {
                 goToPos(ranX, ranZ);
             }
         }
+        // Rotates the mob to face forward direction of movement
         Vector3f dir = new Vector3f();
         Vector3f.sub(pos, lastPos, dir);
         float rotY =
@@ -47,7 +50,6 @@ public class Enemy extends Mob {
                         Math.atan2(dir.z, dir.x)
                 );
         setRotY(rotY);
-        // System.out.println(rotY);
         lastPos = new Vector3f(pos);
     }
 

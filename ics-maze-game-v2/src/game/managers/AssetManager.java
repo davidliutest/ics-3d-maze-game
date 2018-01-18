@@ -9,6 +9,7 @@ import engine.utils.OBJConverter;
 import game.main.Handler;
 import org.lwjgl.util.vector.Vector2f;
 
+// Contains and loads game assets
 public class AssetManager {
 
     private Handler handler;
@@ -64,6 +65,8 @@ public class AssetManager {
         hpbar = new GuiObj(red.getID(), new Vector2f(0f, 0.9f), new Vector2f(0.9f, 0.05f));
         hpbarEmpty = new GuiObj(grey.getID(), new Vector2f(0f, 0.9f), new Vector2f(0.9f, 0.05f));
     }
+
+    // Methods that load assets
 
     public ModelTexture loadTexture(String file) {
         return new ModelTexture(handler.getLoader().loadTexture(file));

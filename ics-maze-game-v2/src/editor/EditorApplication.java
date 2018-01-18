@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
+// The application for the editor
 public class EditorApplication implements Runnable{
 
     private boolean running;
@@ -19,7 +20,7 @@ public class EditorApplication implements Runnable{
     private Editor editor;
     private Keys keys;
     private Mouse mouse;
-    //starts game
+    // Starts game
     public synchronized void start() {
         if(running)
             return;
@@ -27,7 +28,7 @@ public class EditorApplication implements Runnable{
         thread = new Thread(this);
         thread.start();
     }
-    //creates frame
+    // Creates frame
     public void create() {
         frame = new JFrame("Maze and Pathfinding Test");
         frame.setSize(initWidth, initHeight);
@@ -57,7 +58,7 @@ public class EditorApplication implements Runnable{
         editor = new Editor(this);
         editor.create();
     }
-    // run gui
+    // Run gui
     public void run() {
         create();
         int FPS = 250;
@@ -90,7 +91,7 @@ public class EditorApplication implements Runnable{
         }
         stop();
     }
-    //renders game
+    // Renders game
     public void render() {
         bs = canvas.getBufferStrategy();
         if(bs == null) {
@@ -103,7 +104,7 @@ public class EditorApplication implements Runnable{
         bs.show();
         g.dispose();
     }
-    //stops game
+    // Stops game
     public synchronized void stop() {
         if(!running)
             return;
@@ -114,7 +115,7 @@ public class EditorApplication implements Runnable{
             e.printStackTrace();
         }
     }
-    //getters
+    // Getters
     public int getCanvWidth() {
         return canvas.getWidth();
     }

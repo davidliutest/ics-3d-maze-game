@@ -12,6 +12,8 @@ import org.lwjgl.util.vector.Vector3f;
 import java.util.ArrayList;
 import java.util.List;
 
+// Manages the entities of the game
+// Includes important tools used for entity interactions
 public class EntityManager {
 
     private Handler handler;
@@ -29,17 +31,20 @@ public class EntityManager {
     public void create() {
         RC start = handler.getMap().getStart();
         float len = handler.getMap().getWallLen();
+        // Creates player
         player = new Player(
                 handler, new Vector3f(start.c * len + len/2,0, start.r * len + len/2),
                 0,0,0,0.5f, new RC(handler.getMap().getStart())
         );
         player.setVisible(false);
         entityList.add(player);
+        // Places all entities on top of floor
         for(Entity e : entityList) {
             e.setPosY(e.getLenY()/2);
         }
         pathfinder = new Pathfinder(handler.getMap());
     }
+
     public void create(MapData1 mapData1) {
         RC start = handler.getMap().getStart();
         float len = handler.getMap().getWallLen();
@@ -70,6 +75,7 @@ public class EntityManager {
         }
     }
 
+    // Getters and setters
     public List<Entity> getEntityList() {
         return entityList;
     }

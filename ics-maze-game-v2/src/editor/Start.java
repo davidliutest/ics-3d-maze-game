@@ -22,17 +22,17 @@ public class Start {
         }
     }
     public static void main(String[] args){
-        //creates frame
+        // Creates Frame
         f = new JFrame("3D MAZE");
         f.setSize(1000, 600);
         f.setResizable(false);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel p = new JPanel(new GridBagLayout());
-        // grid bag layout
+        // Grid Bag Layout
         GridBagConstraints con = new GridBagConstraints();
-        // creates buttons
+        // Creates Buttons
         JButton start1 = new JButton("GENERATE RANDOM MAZE");
-        // add action listeners
+        // Ddd action listeners
         start1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -50,7 +50,7 @@ public class Start {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 int returnVal = fileChooser.showOpenDialog(null);
-                // int returnValue = jfc.showSaveDialog(null);
+                // Int returnValue = jfc.showSaveDialog(null);
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     File selected = fileChooser.getSelectedFile();
                     System.out.println(selected.getAbsolutePath());
@@ -88,7 +88,7 @@ public class Start {
         con.gridx = 0;
         con.gridy = 0;
 
-        //gridbaglayout to format
+        // Gridbaglayout to format
         JLabel label = new JLabel("ICS Maze Game");
         label.setFont(new Font("Arial", 0, 48));
 

@@ -1,7 +1,8 @@
 package game.main;
 
-// game.Launcher class for the game
+// Main class of the application
 // Contains the main game loop
+// All components of game (excluding launcher) is contained here
 
 // Common methods: default_contructor, create(), start(), update(), stop(), close(), run() (SPECIAL)
 // default_contructor -> initializes variables
@@ -9,7 +10,7 @@ package game.main;
 // start() -> starts function of class
 // update() -> updates state of class
 // stop() -> temporarily stop function of class
-// close() -> closing operation whe program exits
+// close() -> closing operation when program exits
 
 // Stucture
 // common methods is first in specified order, then helper methods in order of usage
@@ -33,6 +34,7 @@ public class App {
     private GuiRenderer guiRenderer;
     private AssetManager modelManager;
 
+    // Initializes variables using only constructors
     public App() {
         handler = new Handler();
         loader = new Loader();
@@ -47,13 +49,7 @@ public class App {
         handler.setStateManager(stateManager);
     }
 
-    public void create(MapData1 mapData1) {
-        Window.create();
-        renderer.create();
-        guiRenderer.create(loader);
-        modelManager.create();
-        stateManager.create(mapData1);
-    }
+    // Creates various data
     public void create() {
         Window.create();
         renderer.create();
@@ -61,6 +57,17 @@ public class App {
         modelManager.create();
         stateManager.create();
     }
+
+    //Creates data with preset map data
+    public void create(MapData1 mapData1) {
+        Window.create();
+        renderer.create();
+        guiRenderer.create(loader);
+        modelManager.create();
+        stateManager.create(mapData1);
+    }
+
+    // Main game loop
     public void run() {
         create();
         // Main game loop
@@ -70,6 +77,8 @@ public class App {
         }
         close();
     }
+
+    // Main game loop with preset map data
     public void run(MapData1 mapData1) {
         create(mapData1);
         // Main game loop
@@ -79,10 +88,12 @@ public class App {
         }
     }
 
+    // Checks conditions that closes the window
     public boolean checkStop() {
         return !Display.isCloseRequested() && !Keyboard.isKeyDown(Keyboard.KEY_ESCAPE);
     }
 
+    // Safely exits program and prevents mem leaks
     public void close() {
         loader.close();
         renderer.close();

@@ -2,6 +2,7 @@ package engine.datastruct;
 
 import org.lwjgl.util.vector.Vector3f;
 
+// Data structure that holds info for a 3D model
 public class ModelData {
 
     public float[] vertices, normals, textures, bounds;

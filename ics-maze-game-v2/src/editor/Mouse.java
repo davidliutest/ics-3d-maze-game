@@ -6,31 +6,31 @@ public class Mouse implements MouseListener, MouseMotionListener, MouseWheelList
 	
 	private boolean left;
 	private int mx = -1, my = -1, wheel;
-	//mouse held down function
+	// Mouse held down function
 	@Override
 	public void mousePressed(MouseEvent e) {
 		if(e.getButton() == MouseEvent.BUTTON1)
 			left = true;
 	}
-	//mouse released function
+	// Mouse released function
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		if(e.getButton() == MouseEvent.BUTTON1)
 			left = false;
 	}
-	//mouse dragged function
+	// Mouse dragged function
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		mx = e.getX();
 		my = e.getY();
 	}
-	//mouse moved function
+	// Mouse moved function
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		mx = e.getX();
 		my = e.getY();
 	}
-	// zoom in and out function
+	// Zoom in and out function
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent e) {
 		wheel += -1 * e.getWheelRotation();

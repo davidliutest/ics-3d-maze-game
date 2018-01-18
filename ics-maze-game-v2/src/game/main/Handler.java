@@ -9,6 +9,8 @@ import game.managers.StateManager;
 import game.map.Map;
 import game.states.GameState;
 
+// Contains references of instances of important classes
+// Used for classes to access important external variables from other classes
 public class Handler {
 
     private Loader loader;

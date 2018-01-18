@@ -1,19 +1,20 @@
 package editor;
 
+// Stores information of the maze
 public class Map1 {
 
     private transient EditorApplication app;
     private transient Tile[][] map;
     private int mapr, mapc;
 
-    //map constructor
+    // Map constructor
     public Map1(EditorApplication app, int mapr, int mapc) {
         this.app = app;
         this.mapr = mapr;
         this.mapc = mapc;
         map = new Tile[mapr][mapc];
     }
-    //creates blank map
+    // Creates blank map
     public void create() {
         for(int i = 0; i < mapr; i++) {
             for(int j = 0; j < mapc; j++) {
@@ -21,19 +22,19 @@ public class Map1 {
             }
         }
     }
-    //tile getter
+    // Tile getter
     public Tile tile(int r, int c) {
         return map[r][c];
     }
-    //height getter
+    // Height getter
     public int height() {
         return  mapr;
     }
-    //width getter
+    // Width getter
     public int width() {
         return mapc;
     }
-    //save map
+    // Save map
     public MapData1 save() {
         MapData1 mapSave = new MapData1(mapr, mapc);
         for(int i = 0; i < mapr; i++)
@@ -49,7 +50,7 @@ public class Map1 {
                 }
         return mapSave;
     }
-    //load map
+    // Load map
     public void load(MapData1 mapLoad) {
         map = new Tile[mapLoad.mapr][mapLoad.mapc];
         for(int i = 0; i < mapr; i++)

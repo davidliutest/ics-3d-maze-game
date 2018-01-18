@@ -11,6 +11,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.FloatBuffer;
 
+// Base class for all Shader classes
+// Shader classes uses OpenGL functions to send information to the GPU,
+// increasing performance of rendering models
+// Uses a vertex shader (responsible for vertices of models) and fragment shader (responsible for pixels of models)
+
 public abstract class Shader {
 
     protected int programID, vertexShaderID, fragShaderID;
@@ -20,6 +25,7 @@ public abstract class Shader {
 
     protected abstract String fragFile();
 
+    // Binds the shader program and shader glsl files into OpenGL
     public void create(){
         vertexShaderID = loadFile(vertexFile(), GL20.GL_VERTEX_SHADER);
         fragShaderID = loadFile(fragFile(), GL20.GL_FRAGMENT_SHADER);

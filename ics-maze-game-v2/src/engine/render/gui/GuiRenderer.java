@@ -12,8 +12,10 @@ import org.lwjgl.util.vector.Vector3f;
 
 import java.util.List;
 
+// Renders models through a projection matrix using OpenGL
 public class GuiRenderer {
 
+    // Rectangle shape of GUI objs
     private RawModel quad;
     private GuiShader shader;
 
@@ -21,12 +23,14 @@ public class GuiRenderer {
         shader = new GuiShader();
     }
 
+    // Initializes shader and creates the rectangle shape of all GUI objs
     public void create(Loader loader) {
         shader.create();
         float[] positions = {-1, 1, -1, -1, 1, 1, 1, -1};
         quad = loader.loadVAO(positions,2);
     }
 
+    // Renders a list of GUI objs
     public void render(List<GuiObj> guis){
         shader.start();
         GL30.glBindVertexArray(quad.getVaoID());
@@ -48,6 +52,7 @@ public class GuiRenderer {
         shader.stop();
     }
 
+    // Creates the transformation matrix of GUI objs
     public static Matrix4f createTransMatrix(Vector2f translation, Vector2f scale) {
         Matrix4f matrix = new Matrix4f();
         matrix.setIdentity();

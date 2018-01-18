@@ -4,6 +4,7 @@ import game.datastruct.RC;
 
 import java.io.Serializable;
 
+// Data structure that contains info for a map
 public class MapData1 implements Serializable {
 
     public int mapr, mapc;
@@ -11,7 +12,7 @@ public class MapData1 implements Serializable {
 
     public RC start, end;
 
-    //takes points and stores it in data array
+    // Takes points and stores it in data array
     public MapData1(int mapr, int mapc) {
         this.mapr = mapr;
         this.mapc = mapc;

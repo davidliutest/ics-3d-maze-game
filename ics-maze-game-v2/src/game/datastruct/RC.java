@@ -1,5 +1,7 @@
 package game.datastruct;
 
+// Data structure that stores a position of an array
+// R - index of the row of array, C - index of the column of array
 public class RC {
 
     public int r, c;

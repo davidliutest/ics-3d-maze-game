@@ -5,6 +5,7 @@ import engine.render.models.TextureModel;
 import game.main.Handler;
 import org.lwjgl.util.vector.Vector3f;
 
+// Base class for entities that do not move
 public class StaticEntity extends Entity {
 
     protected Handler handler;

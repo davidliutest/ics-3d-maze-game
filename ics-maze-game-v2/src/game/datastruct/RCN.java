@@ -1,5 +1,8 @@
 package game.datastruct;
 
+// Data structure that stores a position of an array used as a tree
+// R - index of the row of array, C - index of the column of array
+// Contains additional variables to hold graph-related information
 public class RCN {
 
     public int r, c, cost, heuristic;

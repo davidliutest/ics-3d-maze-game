@@ -3,11 +3,12 @@ package editor;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+// Class for keys
 public class Keys implements KeyListener{
 	
 	private boolean[] keys;
 	public boolean u, d, l, r;
-	//Key constructor
+	// Key constructor
 	public Keys() {
 		keys = new boolean[1000];
 	}

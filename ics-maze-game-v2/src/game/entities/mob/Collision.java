@@ -5,10 +5,11 @@ import game.entities.staticentities.Floor;
 
 import java.util.List;
 
-// Collision detection is only AABB vs AABB
-
+// Collision detection using AABB vs AABB in 3D
+// Uses bounding boxes for models determined by the models bounds float arr
 public class Collision {
 
+    // Detects collision of mob with all valid entities
     protected void collideAll(Mob cur, List<Entity> entityList, int dir) {
         for(Entity e : entityList) {
             if(cur != e && !(e instanceof Floor)) {
@@ -17,13 +18,12 @@ public class Collision {
         }
     }
 
-    // Probably inefficient
+    // Requires direction the mob is travelling in
     // Direction:
-    // 0 -> -z
-    // 1 -> +x
-    // 2 -> +z
-    // 3 -> -x
-    // Only checks collision for x and z axis
+    // 0 -> -z dir
+    // 1 -> +x dir
+    // 2 -> +z dir
+    // 3 -> -x dir
 
     protected void collideOne(Mob m1, Entity m2, int dir) {
         // Calibrate bounding box
@@ -41,10 +41,11 @@ public class Collision {
         b[3] = m2.getPos().x + m2.getLenX()/2;
         b[4] = m2.getPos().y + m2.getLenY()/2;
         b[5] = m2.getPos().z + m2.getLenZ()/2;
-        // Detection
+        // Collision detection
         boolean collide =
                 overlap(a, b) || overlap(b, a);
                 ;
+        // Post-Collision adjustments
         if(collide) {
             if(dir == 3) {
                 m1.setDX(m1.getDX() + (b[3] - a[0]) + 0.01f);
@@ -58,6 +59,7 @@ public class Collision {
         }
     }
 
+    // Checks if line segments overlap for 2 model bounds
     public boolean overlap(float[] a, float[] b) {
         return ( (b[0] <= a[0] && a[0] <= b[3]) || (b[0] <= a[3] && a[3] <= b[3]) ) &&
                 ( (b[1] <= a[1] && a[1] <= b[4]) || (b[1] <= a[4] && a[4] <= b[4]) ) &&
