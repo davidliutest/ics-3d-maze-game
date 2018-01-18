@@ -26,7 +26,7 @@ public class Camera {
         yaw += Mouse.getDX() * 0.03f;
 
         // Keyboard movement
-        if (Keyboard.isKeyDown(Keyboard.KEY_X)) {
+        if (Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)) {
             pos.y = 100f;
             if(Keyboard.isKeyDown(Keyboard.KEY_UP)){
                 pos.z -= Math.sin(Math.toRadians(90 - yaw));

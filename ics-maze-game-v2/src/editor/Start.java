@@ -50,7 +50,6 @@ public class Start {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 int returnVal = fileChooser.showOpenDialog(null);
-                // Int returnValue = jfc.showSaveDialog(null);
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     File selected = fileChooser.getSelectedFile();
                     System.out.println(selected.getAbsolutePath());
@@ -101,15 +100,6 @@ public class Start {
         btnPanel.add(start2);
         btnPanel.add(editor);
         p.add(btnPanel, con);
-
-        con.gridy++;
-
-        JLabel instr = new JLabel();
-        instr.setText(
-                "For actual game: WASD to move character, Hold shift to run, X cheat and see birdseye view of the map" +
-                        "For map editor: ARROW KEYS to pan camera, SCROLL to adjust map size."
-        );
-        p.add(instr, con);
 
         f.add(p);
         f.setVisible(true);

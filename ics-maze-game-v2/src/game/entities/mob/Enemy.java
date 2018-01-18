@@ -44,12 +44,11 @@ public class Enemy extends Mob {
         // Rotates the mob to face forward direction of movement
         Vector3f dir = new Vector3f();
         Vector3f.sub(pos, lastPos, dir);
-        float rotY =
-                (float)Math.toDegrees(
-                        Math.PI/2 -
-                        Math.atan2(dir.z, dir.x)
-                );
-        setRotY(rotY);
+        if(!(dir.x == 0 && dir.z == 0)) {
+            float rotY = (float) Math.toDegrees(Math.PI / 2 - Math.atan2(dir.z, dir.x)
+            );
+            setRotY(rotY);
+        }
         lastPos = new Vector3f(pos);
     }
 

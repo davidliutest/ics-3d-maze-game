@@ -75,10 +75,8 @@ public class Editor {
                     public void click() {
                         app.getMouse().resetLeft();
                         int returnVal = fileChooser.showOpenDialog(null);
-                        // int returnValue = jfc.showSaveDialog(null);
                         if (returnVal == JFileChooser.APPROVE_OPTION) {
                             File selected = fileChooser.getSelectedFile();
-                            //System.out.println(selected.getAbsolutePath());
                             try {
                                 FileInputStream fileIn = new FileInputStream(selected);
                                 ObjectInputStream in = new ObjectInputStream(fileIn);
@@ -112,7 +110,6 @@ public class Editor {
                         if (returnVal == JFileChooser.APPROVE_OPTION) {
                             File selected = fileChooser.getSelectedFile();
                             selected = new File(selected.toString() + ".mapdata");
-                            //System.out.println(selected.getAbsolutePath());
                             try {
                                 FileOutputStream fileOut = new FileOutputStream(selected);
                                 ObjectOutputStream out = new ObjectOutputStream(fileOut);
