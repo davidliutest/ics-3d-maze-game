@@ -48,13 +48,6 @@ public class GameState extends State {
 
         Camera cam = handler.getRenderer().getCam();
         cam.update(entityManager.getPlayer().getPos());
-        /*Vector3f camPos = new Vector3f(entityManager.getPlayer().getPos());
-        camPos.y += 4f;
-        cam.changePitch(-(Mouse.getDY() * 0.03f));
-        cam.changeYaw(Mouse.getDX() * 0.03f);
-        cam.setPos(camPos);
-        */
-
         gameLogic.update();
     }
 

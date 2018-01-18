@@ -38,7 +38,15 @@ public class Map1 {
         MapData1 mapSave = new MapData1(mapr, mapc);
         for(int i = 0; i < mapr; i++)
             for(int j = 0; j < mapc; j++)
-                mapSave.data[i][j] = map[i][j].id();
+                if(map[i][j].id() == 0){
+                    mapSave.data[i][j]=1;
+                }
+                else if(map[i][j].id() == 1){
+                    mapSave.data[i][j]=0;
+                }
+                else {
+                    mapSave.data[i][j] = map[i][j].id();
+                }
         return mapSave;
     }
     //load map
