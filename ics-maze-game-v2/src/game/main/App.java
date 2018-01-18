@@ -33,19 +33,6 @@ public class App {
     private GuiRenderer guiRenderer;
     private AssetManager modelManager;
 
-    public App(MapData1 mapData1) {
-        handler = new Handler();
-        loader = new Loader();
-        handler.setLoader(loader);
-        renderer = new Renderer();
-        handler.setRenderer(renderer);
-        guiRenderer = new GuiRenderer();
-        handler.setGuiRenderer(guiRenderer);
-        modelManager = new AssetManager(handler);
-        handler.setAssetManager(modelManager);
-        stateManager = new StateManager(handler, mapData1);
-        handler.setStateManager(stateManager);
-    }
     public App() {
         handler = new Handler();
         loader = new Loader();
@@ -60,6 +47,13 @@ public class App {
         handler.setStateManager(stateManager);
     }
 
+    public void create(MapData1 mapData1) {
+        Window.create();
+        renderer.create();
+        guiRenderer.create(loader);
+        modelManager.create();
+        stateManager.create(mapData1);
+    }
     public void create() {
         Window.create();
         renderer.create();
@@ -77,7 +71,7 @@ public class App {
         close();
     }
     public void run(MapData1 mapData1) {
-        create();
+        create(mapData1);
         // Main game loop
         while(checkStop()) {
             stateManager.update();

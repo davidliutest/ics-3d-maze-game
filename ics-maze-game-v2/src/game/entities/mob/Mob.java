@@ -105,4 +105,6 @@ public abstract class Mob extends Entity {
         return health;
     }
 
+    public void setHealth() { health = 100; }
+
 }

@@ -20,20 +20,21 @@ public class StateManager {
         states[4] = new LoseState(handler);
         cur = 0;
     }
-    public StateManager(Handler handler, MapData1 mapdata1) {
-        this.handler = handler;
-        states = new State[5];
-        states[0] = new MenuState(handler);
-        states[1] = new HelpState(handler);
-        states[2] = new GameState(handler, mapdata1);
-        states[3] = new WinState(handler);
-        states[4] = new LoseState(handler);
-        cur = 0;
-    }
 
     public void create() {
         for(State s : states)
             s.create();
+    }
+
+    public void create(MapData1 mapData1) {
+        for(int i=0; i<states.length; i++) {
+            if(i == 2) {
+                states[i].create(mapData1);
+            }
+            else{
+                states[i].create();
+            }
+        }
     }
 
     public void update() {
