@@ -21,7 +21,7 @@ public class GameState extends State {
     public void create() {
         map.create();
         entityManager.create();
-        guiManager.addGuiObj(handler.getAssetManager().test);
+        //guiManager.addGuiObj(handler.getAssetManager().test);
     }
 
     public void update() {

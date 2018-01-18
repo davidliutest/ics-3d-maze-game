@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public abstract class Clickable extends Rectangle {
-	
+
 	protected EditorApplication app;
 	protected BufferedImage image, imageHover;
 
@@ -17,11 +17,11 @@ public abstract class Clickable extends Rectangle {
 		this.image = i;
 	}
 	//Draws a string centered on the current rectangle
-		protected void text(Graphics g, String s) {
-			FontMetrics m = g.getFontMetrics(g.getFont());
+	protected void text(Graphics g, String s) {
+		FontMetrics m = g.getFontMetrics(g.getFont());
 		g.drawString(s, x+(width-m.stringWidth(s))/2, y+(height-m.getHeight())/2+m.getAscent());
 	}
-	
+
 	protected abstract void click();
 	//If the mouse is hovered
 	protected boolean hover() {

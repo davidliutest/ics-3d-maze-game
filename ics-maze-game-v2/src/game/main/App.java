@@ -35,6 +35,7 @@ public class App {
     private Map map;
     private EntityManager entityManager;
     private Handler handler;
+    public static boolean con;
 
     public App() {
         handler = new Handler();
@@ -43,6 +44,7 @@ public class App {
         modelManager = new ModelManager(handler);
         entityManager = new EntityManager(handler);
         map = new Map(handler, 20, 20);
+        con = true;
     }
 
     public void create(MapData1 mapData1) {
@@ -68,29 +70,21 @@ public class App {
         while(checkStop()) {
             entityManager.update();
             Window.update();
-            if(handler.getEntityManager().getPlayer().getPos().x == handler.getMap().getEnd().r && handler.getEntityManager().getPlayer().getPos().z == handler.getMap().getEnd().c ){
-                close();
-                System.out.println("end");
-            }
         }
     }
+
     public void run() {
         create();
         // Main game loop
-        while(checkStop()) {
+        while(checkStop()&&con) {
             entityManager.update();
             Window.update();
-            if(handler.getEntityManager().getPlayer().getPos().x == handler.getMap().getEnd().r && handler.getEntityManager().getPlayer().getPos().z == handler.getMap().getEnd().c ){
-                close();
-                System.out.println("end");
-            }
         }
     }
 
     public boolean checkStop() {
         return !Display.isCloseRequested() && !Keyboard.isKeyDown(Keyboard.KEY_ESCAPE);
     }
-
     public void close() {
         loader.close();
         renderer.close();

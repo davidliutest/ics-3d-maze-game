@@ -13,6 +13,7 @@ public class MapData1 implements Serializable {
 
     public int mapr, mapc;
     public int[][] data;
+
     public RC start, end;
 
     //takes points and stores it in data array

@@ -2,10 +2,12 @@ package game.managers;
 
 import engine.entities.Entity;
 import engine.gui.GuiRend;
+import engine.render.Window;
 import game.datastruct.RC;
 import game.entities.mob.Collision;
 import game.entities.mob.Player;
 import game.entities.mob.ai.Pathfinder;
+import game.main.App;
 import game.main.Handler;
 import org.lwjgl.util.vector.Vector3f;
 
@@ -50,6 +52,10 @@ public class EntityManager {
         // Updates entities
         for(Entity e : entityList) {
             e.update();
+        }
+        System.out.println(handler.getEntityManager().getPlayer().getMapPos()+" "+handler.getMap().getEnd());
+        if(handler.getEntityManager().getPlayer().getMapPos() == handler.getMap().getEnd()) {
+            App.con=false;
         }
     }
 

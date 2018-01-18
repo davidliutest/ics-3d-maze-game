@@ -16,7 +16,7 @@ public class GuiManager {
     }
 
     public void update() {
-        handler.getGuiRenderer().render(guis);
+        //handler.getGuiRenderer().render(guis);
     }
 
     public void addGuiObj(GuiObj gui) {

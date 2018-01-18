@@ -26,9 +26,19 @@ public class Tile extends Clickable {
     //clicks the button, set image
     protected void click() {
         int select = app.getEditor().getSelect();
-        if(select != -1) {
+        if (select != -1 && select != 2 && select != 3) {
             id = select;
             image = app.getEditor().getImg(select);
+        }
+        else if (select == 2 && Editor.s ==0){
+            id = select;
+            image = app.getEditor().getImg(select);
+            Editor.s++;
+        }
+        else if (select == 3 && Editor.e ==0){
+            id = select;
+            image = app.getEditor().getImg(select);
+            Editor.e++;
         }
     }
 

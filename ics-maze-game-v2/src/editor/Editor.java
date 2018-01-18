@@ -12,6 +12,9 @@ import java.util.List;
 
 public class Editor {
 
+    public static int s =0;
+    public static int e =0;
+
     private EditorApplication app;
     private final float mainWidth = 0.82f, sideWidth = 0.18f;
 

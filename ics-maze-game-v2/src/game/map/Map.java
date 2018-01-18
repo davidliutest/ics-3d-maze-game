@@ -54,7 +54,7 @@ public class Map {
         return new MapData(mapData1.mapr,mapData1.mapc, mapData1.data, entity, mapData1.start, mapData1.end);
     }
     public List<Entity> makeEntityList(MapData1 mapdata1){
-        eList = new ArrayList<Entity>();
+        eList = new ArrayList<>();
         for(int i = 0; i < mapdata1.data.length; i++){
             for(int j =0; j<mapdata1.data[i].length;j++) {
                 if (mapdata1.data[i][j] == 1) {
@@ -67,17 +67,6 @@ public class Map {
                     wall.setPos(new Vector3f(j * wallLen + wallLen / 2, 0, i * wallLen + wallLen / 2));
                     eList.add(wall);
                 }
-                if (mapdata1.data[i][j] == 0) {
-                    Floor floor = new Floor(
-                            handler,
-                            new Vector3f(0, 0, 0),
-                            0, 0, 0, 1f
-                    );
-                    float floorLen = i * wallLen;
-                    floor.setScale(floorLen / floor.getLenX());
-                    floor.setPos(new Vector3f(floorLen / 2, 0, floorLen / 2));
-                    eList.add(floor);
-                }
                 if(mapdata1.data[i][j] == 4){
                     Enemy enemy = new Enemy(
                             handler, new Vector3f(0, 0, 0), 0, 0, 0, 1f, new RC(i, j)
@@ -87,6 +76,15 @@ public class Map {
                 }
             }
         }
+        Floor floor = new Floor(
+                handler,
+                new Vector3f(0, 0, 0),
+                0, 0, 0, 1f
+        );
+        float floorLen = mapr*wallLen;
+        floor.setScale(floorLen/floor.getLenX());
+        floor.setPos(new Vector3f(floorLen/2,0,floorLen/2));
+        eList.add(floor);
         return eList;
     }
     public int getMapR() {
