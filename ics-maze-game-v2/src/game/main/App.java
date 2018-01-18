@@ -14,6 +14,7 @@ package game.main;
 // Stucture
 // common methods is first in specified order, then helper methods in order of usage
 
+import editor.MapData1;
 import engine.render.gui.GuiRenderer;
 import engine.render.Loader;
 import engine.render.game.Renderer;
@@ -32,6 +33,19 @@ public class App {
     private GuiRenderer guiRenderer;
     private AssetManager modelManager;
 
+    public App(MapData1 mapData1) {
+        handler = new Handler();
+        loader = new Loader();
+        handler.setLoader(loader);
+        renderer = new Renderer();
+        handler.setRenderer(renderer);
+        guiRenderer = new GuiRenderer();
+        handler.setGuiRenderer(guiRenderer);
+        modelManager = new AssetManager(handler);
+        handler.setAssetManager(modelManager);
+        stateManager = new StateManager(handler, mapData1);
+        handler.setStateManager(stateManager);
+    }
     public App() {
         handler = new Handler();
         loader = new Loader();
@@ -53,7 +67,6 @@ public class App {
         modelManager.create();
         stateManager.create();
     }
-
     public void run() {
         create();
         // Main game loop
@@ -62,6 +75,14 @@ public class App {
             Window.update();
         }
         close();
+    }
+    public void run(MapData1 mapData1) {
+        create();
+        // Main game loop
+        while(checkStop()) {
+            stateManager.update();
+            Window.update();
+        }
     }
 
     public boolean checkStop() {

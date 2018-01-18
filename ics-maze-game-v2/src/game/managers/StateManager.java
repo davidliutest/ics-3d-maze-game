@@ -1,5 +1,6 @@
 package game.managers;
 
+import editor.MapData1;
 import game.main.Handler;
 import game.states.*;
 
@@ -15,6 +16,16 @@ public class StateManager {
         states[0] = new MenuState(handler);
         states[1] = new HelpState(handler);
         states[2] = new GameState(handler);
+        states[3] = new WinState(handler);
+        states[4] = new LoseState(handler);
+        cur = 0;
+    }
+    public StateManager(Handler handler, MapData1 mapdata1) {
+        this.handler = handler;
+        states = new State[5];
+        states[0] = new MenuState(handler);
+        states[1] = new HelpState(handler);
+        states[2] = new GameState(handler, mapdata1);
         states[3] = new WinState(handler);
         states[4] = new LoseState(handler);
         cur = 0;

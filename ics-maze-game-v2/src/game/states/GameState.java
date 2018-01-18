@@ -1,5 +1,6 @@
 package game.states;
 
+import editor.MapData1;
 import engine.render.game.Camera;
 import engine.render.gui.GuiObj;
 import game.main.Handler;
@@ -20,7 +21,15 @@ public class GameState extends State {
 
     public GameState(Handler handler) {
         super(handler);
-        map = new Map(handler, 11, 11);
+        map = new Map(handler, 20, 20);
+        entityManager = new EntityManager(handler);
+        guiManager = new GuiManager(handler);
+        gameLogic = new GameLogic(handler);
+    }
+    public GameState(Handler handler, MapData1 mapData1) {
+        super(handler);
+        map = new Map(handler, 20, 20);
+        map.create(map.convert(mapData1,map.makeEntityList(mapData1)));
         entityManager = new EntityManager(handler);
         guiManager = new GuiManager(handler);
         gameLogic = new GameLogic(handler);
@@ -40,11 +49,13 @@ public class GameState extends State {
         hpBar.setScale(Math.max(0, entityManager.getPlayer().getHealth()/100*0.9f), hpBar.getScale().y);
 
         Camera cam = handler.getRenderer().getCam();
-        Vector3f camPos = new Vector3f(entityManager.getPlayer().getPos());
+        cam.update(entityManager.getPlayer().getPos());
+        /*Vector3f camPos = new Vector3f(entityManager.getPlayer().getPos());
         camPos.y += 4f;
-        cam.changePitch(-(Mouse.getDY() * 0.3f));
-        cam.changeYaw(Mouse.getDX() * 0.3f);
+        cam.changePitch(-(Mouse.getDY() * 0.03f));
+        cam.changeYaw(Mouse.getDX() * 0.03f);
         cam.setPos(camPos);
+        */
 
         gameLogic.update();
     }
