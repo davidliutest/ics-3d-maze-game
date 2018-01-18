@@ -7,7 +7,7 @@ public class Wall extends StaticEntity {
 
     public Wall(Handler handler, Vector3f position, float rotx, float roty, float rotz, float scale) {
         super(
-                handler, handler.getModelManager().greyCube,
+                handler, handler.getAssetManager().greyCube,
                 position, rotx, roty, rotz, scale
         );
     }

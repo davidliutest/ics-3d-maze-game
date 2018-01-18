@@ -43,9 +43,7 @@ public class Collision {
         b[5] = m2.getPos().z + m2.getLenZ()/2;
         // Detection
         boolean collide =
-                ( (b[0] <= a[0] && a[0] <= b[3]) || (b[0] <= a[3] && a[3] <= b[3]) ) &&
-                ( (b[1] <= a[1] && a[1] <= b[4]) || (b[1] <= a[4] && a[4] <= b[4]) ) &&
-                ( (b[2] <= a[2] && a[2] <= b[5]) || (b[2] <= a[5] && a[5] <= b[5]) )
+                overlap(a, b) || overlap(b, a);
                 ;
         if(collide) {
             if(dir == 3) {
@@ -58,6 +56,12 @@ public class Collision {
                 m1.setDZ(m1.getDZ() - (a[5] - b[2]) - 0.01f);
             }
         }
+    }
+
+    public boolean overlap(float[] a, float[] b) {
+        return ( (b[0] <= a[0] && a[0] <= b[3]) || (b[0] <= a[3] && a[3] <= b[3]) ) &&
+                ( (b[1] <= a[1] && a[1] <= b[4]) || (b[1] <= a[4] && a[4] <= b[4]) ) &&
+                ( (b[2] <= a[2] && a[2] <= b[5]) || (b[2] <= a[5] && a[5] <= b[5]) );
     }
 
 }

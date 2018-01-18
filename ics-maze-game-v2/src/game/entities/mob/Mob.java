@@ -6,11 +6,12 @@ import game.datastruct.RC;
 import game.main.Handler;
 import org.lwjgl.util.vector.Vector3f;
 
-public abstract class Mob extends Entity{
+public abstract class Mob extends Entity {
 
     protected Handler handler;
     protected RC mapPos;
     protected float dx, dy, dz;
+    private float health = 100f;
 
     public Mob(
             Handler handler, TextureModel model, Vector3f position,
@@ -52,7 +53,8 @@ public abstract class Mob extends Entity{
                 dx += 0.15f;
                 move(1);
             }
-        } else if(Math.abs(pdz) >= 0.15f) {
+        }
+        if(Math.abs(pdz) >= 0.15f) {
             if (pdz > 0) {
                 dz -= 0.15f;
                 move(0);
@@ -93,6 +95,14 @@ public abstract class Mob extends Entity{
 
     public void setDZ(float dz) {
         this.dz = dz;
+    }
+
+    public void changeHealth(float dh) {
+        health = Math.max(0, health + dh);
+    }
+
+    public float getHealth() {
+        return health;
     }
 
 }

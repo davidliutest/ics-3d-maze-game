@@ -26,5 +26,8 @@ public class GuiObj {
         return scale;
     }
 
+    public void setScale(float nsx, float nsy) {
+        scale = new Vector2f(nsx, nsy);
+    }
 
 }

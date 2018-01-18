@@ -1,46 +1,68 @@
 package game.main;
 
-import engine.gui.GuiRend;
+import engine.render.gui.GuiRenderer;
 import engine.render.Loader;
-import engine.render.Renderer;
+import engine.render.game.Renderer;
+import game.managers.AssetManager;
 import game.managers.EntityManager;
-import game.managers.ModelManager;
+import game.managers.StateManager;
 import game.map.Map;
+import game.states.GameState;
 
 public class Handler {
 
     private Loader loader;
     private Renderer renderer;
-    private ModelManager modelManager;
-    private EntityManager entityManager;
-    private Map map;
-
-    public void create(Loader l, Renderer r, ModelManager m, Map ma, EntityManager e) {
-        loader = l;
-        renderer = r;
-        modelManager = m;
-        map = ma;
-        entityManager = e;
-    }
+    private GuiRenderer guiRenderer;
+    private AssetManager assetManager;
+    private StateManager stateManager;
 
     public Loader getLoader() {
         return loader;
+    }
+
+    public void setLoader(Loader loader) {
+        this.loader = loader;
     }
 
     public Renderer getRenderer() {
         return renderer;
     }
 
-    public ModelManager getModelManager() {
-        return modelManager;
+    public void setRenderer(Renderer renderer) {
+        this.renderer = renderer;
     }
 
-    public EntityManager getEntityManager() {
-        return entityManager;
+    public GuiRenderer getGuiRenderer() {
+        return guiRenderer;
+    }
+
+    public void setGuiRenderer(GuiRenderer guiRenderer) {
+        this.guiRenderer = guiRenderer;
+    }
+
+    public AssetManager getAssetManager() {
+        return assetManager;
+    }
+
+    public void setAssetManager(AssetManager assetManager) {
+        this.assetManager = assetManager;
+    }
+
+    public StateManager getStateManager() {
+        return stateManager;
+    }
+
+    public void setStateManager(StateManager stateManager) {
+        this.stateManager = stateManager;
     }
 
     public Map getMap() {
-        return map;
+        return ((GameState)stateManager.getGameState()).getMap();
+    }
+
+    public EntityManager getEntityManager() {
+        return ((GameState)stateManager.getGameState()).getEntityManager();
     }
 
 }

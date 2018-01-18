@@ -1,16 +1,9 @@
 package game.managers;
 
 import game.main.Handler;
-import game.states.GameState;
-import game.states.HelpState;
-import game.states.MenuState;
-import game.states.State;
+import game.states.*;
 
 public class StateManager {
-
-    // 0 -> Menustate
-    // 1 -> HelpState
-    // 2 -> GameState
 
     private Handler handler;
     private int cur;
@@ -18,17 +11,18 @@ public class StateManager {
 
     public StateManager(Handler handler) {
         this.handler = handler;
-        states = new State[3];
+        states = new State[5];
         states[0] = new MenuState(handler);
         states[1] = new HelpState(handler);
         states[2] = new GameState(handler);
-        cur = 2;
+        states[3] = new WinState(handler);
+        states[4] = new LoseState(handler);
+        cur = 0;
     }
 
     public void create() {
-        for(State s : states) {
+        for(State s : states)
             s.create();
-        }
     }
 
     public void update() {

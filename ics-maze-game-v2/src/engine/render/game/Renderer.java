@@ -51,11 +51,12 @@ public class Renderer {
 	}
 
 	public void update(List<Entity> entityList) {
-		cam.update();
+		//cam.update();
 		start();
 		shader.start();
 		for(Entity e : entityList) {
-			render(e);
+			//if(e.getVisible())
+				render(e);
 		}
 		shader.loadViewMatrix(createViewMatrix());
 		shader.stop();
@@ -105,6 +106,10 @@ public class Renderer {
 		Vector3f negCamPos = new Vector3f(-camPos.x,-camPos.y,-camPos.z);
 		Matrix4f.translate(negCamPos, viewMatrix, viewMatrix);
 		return viewMatrix;
+	}
+
+	public Camera getCam() {
+		return cam;
 	}
 
 }

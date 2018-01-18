@@ -13,15 +13,17 @@ import java.util.List;
 /*
 INSTRUCTIONS FOR BLENDER:
 Load BLENDER OBJ WAVEFRONT FILES
+    MAKE SURE THE ORIGIN is at the CENTER of the model!
+        To do this Shift + Ctrl + Alt + C and press Geometry to Origin!
     USE UV EDITING TO TEXTURE MODELS
-    DO NOT USE TRIANGULAR FACES, DO USE RECTANGULAR FACES
     INCLUDE NORMALS
     # of "v" lines should equal total number of vertices of the model
     # of "vt" lines vary
-    # of "vn" lines should equal total number of vertices of the model
-    # of "f" lines should be total number of faces of the model, with 3*4=12 values per line
+    # of "vn" lines vary
+    # of "f" lines should be total number of faces of the model
 TEXTURES
     Make sure images have dimension that are POWERS OF 2
+    If not working, try rotating and reflecting image
  */
 
 public class OBJConverter {
@@ -35,6 +37,7 @@ public class OBJConverter {
         List<Vector3f> vertList = new ArrayList<Vector3f>();
         List<Vector2f> texList = new ArrayList<Vector2f>();
         List<Vector3f> normList = new ArrayList<Vector3f>();
+        List<String> faces = new ArrayList<String>();
         float[] vertices = null;
         float[] normals = null;
         float[] textures = null;
@@ -44,42 +47,30 @@ public class OBJConverter {
         try {
             String file = "/obj/" + fileName + ".obj";
             br = new BufferedReader(new InputStreamReader(OBJConverter.class.getResourceAsStream(file)));
-            while (cnt < MAX_LINES) {
-                ln = br.readLine();
-                if (ln != null) {
-                    String[] tok = ln.split("\\s+");
-                    if (tok[0].equals("v")) {
-                        Vector3f ver = new Vector3f(
-                                Float.parseFloat(tok[1]), Float.parseFloat(tok[2]), Float.parseFloat(tok[3])
-                        );
-                        vertList.add(ver);
-                    } else if (tok[0].equals("vt")) {
-                        Vector2f tex = new Vector2f(Float.parseFloat(tok[1]), Float.parseFloat(tok[2]));
-                        texList.add(tex);
-                    } else if (tok[0].equals("vn")) {
-                        Vector3f norm = new Vector3f(
-                                Float.parseFloat(tok[1]), Float.parseFloat(tok[2]), Float.parseFloat(tok[3])
-                        );
-                        normList.add(norm);
-                    } else if (tok[0].equals("f")) {
-                        if (tok.length - 1 == 4)
-                            face3 = false;
-                        break;
-                    }
+            while ((ln = br.readLine()) != null && cnt < MAX_LINES) {
+                String[] tok = ln.split("\\s+");
+                if (tok[0].equals("v")) {
+                    Vector3f ver = new Vector3f(
+                            Float.parseFloat(tok[1]), Float.parseFloat(tok[2]), Float.parseFloat(tok[3])
+                    );
+                    vertList.add(ver);
+                } else if (tok[0].equals("vt")) {
+                    Vector2f tex = new Vector2f(Float.parseFloat(tok[1]), Float.parseFloat(tok[2]));
+                    texList.add(tex);
+                } else if (tok[0].equals("vn")) {
+                    Vector3f norm = new Vector3f(
+                            Float.parseFloat(tok[1]), Float.parseFloat(tok[2]), Float.parseFloat(tok[3])
+                    );
+                    normList.add(norm);
+                } else if (tok[0].equals("f")) {
+                    faces.add(ln);
                 }
                 cnt++;
             }
+            face3 = faces.get(0).split("\\s+").length-1 == 3;
             //System.out.println(vertList);
             //System.out.println(texList);
             //System.out.println(normList);
-            cnt = 0;
-            List<String> faces = new ArrayList<String>();
-            while (ln != null && cnt < MAX_LINES) {
-                if (ln.startsWith("f "))
-                    faces.add(ln);
-                ln = br.readLine();
-                cnt++;
-            }
             if (face3) {
                 vertices = new float[faces.size() * 3 * 3];
                 textures = new float[faces.size() * 3 * 2];
@@ -101,11 +92,10 @@ public class OBJConverter {
                         normals[i * 9 + j * 3 + 1] = norm.y;
                         normals[i * 9 + j * 3 + 2] = norm.z;
                     }
-                    indices[i * 3] = i * 3;
+                    indices[i * 3] = i * 3 ;
                     indices[i * 3 + 1] = i * 3 + 1;
                     indices[i * 3 + 2] = i * 3 + 2;
                 }
-                System.out.println(indices);
             } else {
                 vertices = new float[faces.size() * 4 * 3];
                 textures = new float[faces.size() * 4 * 2];
@@ -158,7 +148,6 @@ public class OBJConverter {
             e.printStackTrace();
             System.exit(-1);
         }
-        //System.out.println(Arrays.toString(modelBounds));
         return new ModelData(vertices, textures, normals, indices, bounds);
     }
 

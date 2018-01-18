@@ -5,6 +5,7 @@ import game.datastruct.MapData;
 import game.datastruct.RC;
 import game.entities.mob.Enemy;
 import game.entities.staticentities.Floor;
+import game.entities.staticentities.Shutdown;
 import game.entities.staticentities.Wall;
 import game.main.Handler;
 import org.lwjgl.util.vector.Vector3f;
@@ -120,9 +121,9 @@ public class MapGen {
                             count++;
                     }
                 }
-                if(count == 3) {
+                if(count == 3 && (new RC(i, j).dist(start) > 3)) {
                     Enemy enemy = new Enemy(
-                            handler, new Vector3f(0, 0, 0), 0, 0, 0, 1f, new RC(i, j)
+                            handler, new Vector3f(0, 0, 0), 0, 0, 0, 0.5f, new RC(i, j)
                     );
                     enemy.setPos(new Vector3f(j*wallLen+wallLen/2, 0, i*wallLen+wallLen/2));
                     entityList.add(enemy);
@@ -132,6 +133,11 @@ public class MapGen {
             }
         }
 
+        Shutdown shutdown = new Shutdown(
+                handler, new Vector3f(0, 0, 0),0, 0, 0, 3f, end
+        );
+        shutdown.setPos(new Vector3f(end.c*wallLen+wallLen/2, 0, end.r*wallLen+wallLen/2));
+        entityList.add(shutdown);
 
         return new MapData(mapr, mapc, map, entityList, start, end);
     }

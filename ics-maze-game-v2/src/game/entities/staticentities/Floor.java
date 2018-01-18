@@ -7,7 +7,7 @@ public class Floor extends StaticEntity {
 
     public Floor(Handler handler, Vector3f position, float rotx, float roty, float rotz, float scale) {
         super(
-                handler, handler.getModelManager().beigeSquare,
+                handler, handler.getAssetManager().beigeSquare,
                 position, rotx, roty, rotz, scale
         );
     }

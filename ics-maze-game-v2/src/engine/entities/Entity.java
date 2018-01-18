@@ -1,7 +1,6 @@
 package engine.entities;
 
 import engine.render.models.TextureModel;
-import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 
 // Base class for all entities of the game
@@ -34,6 +33,10 @@ public class Entity {
         this.visible = b;
     }
 
+    public boolean getVisible() {
+        return visible;
+    }
+
     public void remove() {
         this.remove = true;
     }
@@ -46,9 +49,10 @@ public class Entity {
 
     public void changeRot(float dx, float dy, float dz){
         this.rotx += dx;
-        this.roty = -dy;
+        this.roty += dy;
         this.rotz += dz;
     }
+
     public float dist(Entity e) {
         return (float)Math.sqrt(
                 Math.pow(pos.x - e.getPosX(),2) +

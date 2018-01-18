@@ -14,16 +14,16 @@ public class AssetManager {
     private Handler handler;
 
     // Textures
-    public ModelTexture grey, green, red, beige, skin;
+    public ModelTexture grey, green, red, beige, skin, robot, cover, shutdown, win, lose, help;
 
     // RawModels
-    public RawModel cube, square, dragon;
+    public RawModel cube, square, character, charNoHead;
 
     // TextureModels
-    public TextureModel greyCube, greenCube, redCube, beigeSquare, redDragon;
+    public TextureModel greyCube, greenCube, redCube, beigeSquare, player, enemy, shutDownCube;
 
     // Gui
-    public GuiObj test;
+    public GuiObj coverGUI, winGUI, loseGUI, helpGUI, hpbar, hpbarEmpty;
 
     public AssetManager(Handler handler) {
         this.handler = handler;
@@ -35,24 +35,34 @@ public class AssetManager {
         green = loadTexture("green");
         red = loadTexture("red");
         beige = loadTexture("beige");
-        skin = loadTexture("skin_soldier");
+        skin = loadTexture("person");
+        robot = loadTexture("robot");
+        cover = loadTexture("cover");
+        shutdown = loadTexture("shutdown");
+        win = loadTexture("win");
+        lose = loadTexture("lose");
+        help = loadTexture("instructions");
 
         // RawModels
         cube = loadRawModel("cube");
         square = loadRawModel("square");
-        dragon = loadRawModel("dragon");
+        character = loadRawModel("character");
+        charNoHead = loadRawModel("character2");
 
         // TextureModels
         beigeSquare = new TextureModel(square, beige);
         greyCube = new TextureModel(cube, grey);
         greenCube = new TextureModel(cube, green);
         redCube = new TextureModel(cube, red);
-        redDragon = new TextureModel(dragon, red);
-
-        test = new GuiObj(
-                handler.getLoader().loadTexture("red"),
-                new Vector2f(0f, 0f), new Vector2f(0.25f, 0.25f)
-        );
+        player = new TextureModel(charNoHead, skin);
+        enemy = new TextureModel(character, robot);
+        shutDownCube = new TextureModel(cube, shutdown);
+        coverGUI = new GuiObj(cover.getID(), new Vector2f(0f, 0f), new Vector2f(1f, 1f));
+        winGUI = new GuiObj(win.getID(), new Vector2f(0f, 0f), new Vector2f(1f, 1f));
+        loseGUI = new GuiObj(lose.getID(), new Vector2f(0f, 0f), new Vector2f(1f, 1f));
+        helpGUI = new GuiObj(help.getID(), new Vector2f(0f, 0f), new Vector2f(1f, 1f));
+        hpbar = new GuiObj(red.getID(), new Vector2f(0f, 0.9f), new Vector2f(0.9f, 0.05f));
+        hpbarEmpty = new GuiObj(grey.getID(), new Vector2f(0f, 0.9f), new Vector2f(0.9f, 0.05f));
     }
 
     public ModelTexture loadTexture(String file) {

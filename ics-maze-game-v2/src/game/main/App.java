@@ -14,59 +14,54 @@ package game.main;
 // Stucture
 // common methods is first in specified order, then helper methods in order of usage
 
-import engine.gui.GuiRend;
-import engine.gui.GuiTex;
+import engine.render.gui.GuiRenderer;
 import engine.render.Loader;
-import engine.render.Renderer;
+import engine.render.game.Renderer;
 import engine.render.Window;
-import game.managers.EntityManager;
-import game.managers.ModelManager;
-import game.map.Map;
+import game.managers.AssetManager;
+import game.managers.StateManager;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
-import org.lwjgl.util.vector.Vector2f;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class App {
 
+    private Handler handler;
+    private StateManager stateManager;
     private Loader loader;
     private Renderer renderer;
-    private ModelManager modelManager;
-    private Map map;
-    private EntityManager entityManager;
-    private Handler handler;
+    private GuiRenderer guiRenderer;
+    private AssetManager modelManager;
 
     public App() {
         handler = new Handler();
         loader = new Loader();
+        handler.setLoader(loader);
         renderer = new Renderer();
-        modelManager = new ModelManager(handler);
-        entityManager = new EntityManager(handler);
-        map = new Map(handler, 20, 20);
+        handler.setRenderer(renderer);
+        guiRenderer = new GuiRenderer();
+        handler.setGuiRenderer(guiRenderer);
+        modelManager = new AssetManager(handler);
+        handler.setAssetManager(modelManager);
+        stateManager = new StateManager(handler);
+        handler.setStateManager(stateManager);
     }
 
     public void create() {
-        handler.create(loader, renderer, modelManager, map, entityManager);
         Window.create();
+        renderer.create();
+        guiRenderer.create(loader);
         modelManager.create();
-        map.create();
-        entityManager.create();
-        renderer.create(handler.getEntityManager().getPlayer().getPos());
+        stateManager.create();
     }
 
     public void run() {
         create();
         // Main game loop
         while(checkStop()) {
-            entityManager.update();
+            stateManager.update();
             Window.update();
-            if(handler.getEntityManager().getPlayer().getPos().x == handler.getMap().getEnd().r && handler.getEntityManager().getPlayer().getPos().z == handler.getMap().getEnd().c ){
-                close();
-                System.out.println("end");
-            }
         }
+        close();
     }
 
     public boolean checkStop() {
@@ -76,6 +71,7 @@ public class App {
     public void close() {
         loader.close();
         renderer.close();
+        guiRenderer.close();
         Window.close();
     }
 

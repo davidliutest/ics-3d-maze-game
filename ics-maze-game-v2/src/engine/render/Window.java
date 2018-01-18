@@ -5,13 +5,14 @@ package engine.render;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.*;
+import org.lwjgl.opengl.ContextAttribs;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.PixelFormat;
 
 public class Window {
 
     // Window variables
-    private static final int WIDTH = 1000;
-    private static final int HEIGHT = 600;
     private static final int FPS_MAX = 60;
 
     // LWJGL code to create display
@@ -20,12 +21,14 @@ public class Window {
         attr.withForwardCompatible(true);
         attr.withProfileCore(true);
         try {
-            Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
+            //Display.setDisplayMode(new DisplayMode(800, 500));
+            Display.setFullscreen(true);
+            Display.setVSyncEnabled(true);
             Display.create(new PixelFormat(), attr);
             Display.setTitle("ICS Maze App");
             //Display.setResizable(true);
             Mouse.setGrabbed(true);
-            GL11.glViewport(0, 0, WIDTH, HEIGHT);
+            GL11.glViewport(0, 0, getWidth(), getHeight());
         } catch (LWJGLException e) {
             e.printStackTrace();
         }
@@ -40,6 +43,14 @@ public class Window {
     // Cleans up on close, prevents mem leaks
     public static void close() {
         Display.destroy();
+    }
+
+    public static int getWidth() {
+        return Display.getWidth();
+    }
+
+    public static int getHeight() {
+        return Display.getHeight();
     }
 
 }
