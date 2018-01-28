@@ -1,4 +1,5 @@
-// https://github.com/davidliutest/ics-maze-gameimport java.util.Comparator;
+// https://github.com/davidliutest/ics-maze-game 
+import java.util.Comparator;
 
 // Compares RCN data structures using the heuristics
 public class RCNCompare implements Comparator<RCN>{

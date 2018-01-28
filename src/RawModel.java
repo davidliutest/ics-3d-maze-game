@@ -1,4 +1,5 @@
-// https://github.com/davidliutest/ics-maze-game
+// https://github.com/davidliutest/ics-maze-game 
+
 // Contains information for a model to be rendered
 public class RawModel {
 

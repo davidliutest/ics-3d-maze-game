@@ -1,4 +1,5 @@
-// https://github.com/davidliutest/ics-maze-game
+// https://github.com/davidliutest/ics-maze-game 
+
 // Data structure that stores a position of an array
 // R - index of the row of array, C - index of the column of array
 public class RC {

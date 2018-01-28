@@ -1,4 +1,5 @@
-// https://github.com/davidliutest/ics-maze-game
+// https://github.com/davidliutest/ics-maze-game 
+
 import org.lwjgl.util.vector.Vector3f;
 
 // Stores info of the walls of the maze

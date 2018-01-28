@@ -1,4 +1,5 @@
-// https://github.com/davidliutest/ics-maze-game
+// https://github.com/davidliutest/ics-maze-game 
+
 
 // Stores information of the maze
 public class Map {

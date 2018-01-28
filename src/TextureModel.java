@@ -1,4 +1,5 @@
-// https://github.com/davidliutest/ics-maze-game
+// https://github.com/davidliutest/ics-maze-game 
+
 // Stores information of a model that is textured (with an image) to be rendered
 
 public class TextureModel extends RawModel {

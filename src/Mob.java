@@ -1,4 +1,5 @@
-// https://github.com/davidliutest/ics-maze-game
+// https://github.com/davidliutest/ics-maze-game 
+
 import org.lwjgl.util.vector.Vector3f;
 
 // Base class for entities who exhibits movement (Mobs)

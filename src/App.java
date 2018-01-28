@@ -1,4 +1,5 @@
-// https://github.com/davidliutest/ics-maze-game
+// https://github.com/davidliutest/ics-maze-game 
+
 // Main class of the application
 // Contains the main game loop
 // All components of game (excluding launcher) is contained here

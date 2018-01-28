@@ -1,4 +1,5 @@
-// https://github.com/davidliutest/ics-maze-game
+// https://github.com/davidliutest/ics-maze-game 
+
 // Data structure that stores a position of an array used as a tree
 // R - index of the row of array, C - index of the column of array
 // Contains additional variables to hold graph-related information

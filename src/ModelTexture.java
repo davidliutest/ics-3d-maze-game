@@ -1,4 +1,5 @@
-// https://github.com/davidliutest/ics-maze-game
+// https://github.com/davidliutest/ics-maze-game 
+
 
 // Stores data of a Texture (image) that is binded in OpenGL
 public class ModelTexture {
