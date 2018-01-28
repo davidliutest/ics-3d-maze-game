@@ -1,3 +1,0 @@
-Left Ctrl -> free camera, arrow keys to move, mouse to pan
-
-Left Shift -> +100 HP to player
