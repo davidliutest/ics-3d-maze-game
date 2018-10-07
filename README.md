@@ -1,4 +1,4 @@
-# ICS Summative Project
+#  Maze 3D Game
 
 How to play and instructions are in the game.
 
