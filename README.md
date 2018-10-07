@@ -2,7 +2,7 @@
 
 How to play and instructions are in the game.
 
-## Applies to all contents in lib directory
+## Applies to all corresponding contents in lib directory
 
 Lightweight Java Game Library License: https://www.lwjgl.org/license
 
