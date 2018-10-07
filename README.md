@@ -10,8 +10,8 @@ Slick2D Util License: http://slick.ninjacave.com/license/
 
 ## Install
 
-Download and import into Intellij. Make sure to add lib and res folders as resource folders.
-Add all lib contents as libraries.
+Download and import into IntelliJ. Make sure to add lib and res folders as resource folders.
+Add all lib contents as libraries. 
 
 ## Cheats
 
