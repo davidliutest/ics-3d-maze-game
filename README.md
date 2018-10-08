@@ -18,7 +18,3 @@ Add all jar contents as code libraries. Include the native code library specific
 Press Left+CTRL and use arrow keys to move free camera
 
 Press H for more health
-
-## Commits
-
-davidliutest has changed username to imdividual and thus lost a huge amount of commits from before
